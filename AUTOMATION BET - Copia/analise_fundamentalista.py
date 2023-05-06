@@ -16,7 +16,7 @@ from soccer_stats.get_name_league import get_name
 from soccer_stats.table_result_passed import TableResultPassed
 
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\5-MAIO\\7').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\5-MAIO\\8').glob("**\*.html")
 
 paths = []
 for path in recent_paths:

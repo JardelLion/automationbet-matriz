@@ -9,7 +9,7 @@ def get_sheet_name(sheet_name):
 workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ.xlsx')
 sheet = workbook[get_sheet_name('maio')]
 
-question_day =  '6/5/2023' #data 10/5/2010
+question_day =  '7/5/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -83,7 +83,7 @@ def analise_tecnica_magico(index):
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-MAGICO]"
     
     if is_analise_over:
-        return "The Robot Recomend Enter in << OVER 2 >>  [MATRIZ-MAGICO]"
+        return "The Robot Recomend Enter in << OVER 2,25 >>  [MATRIZ-MAGICO]"
     else:
         return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-MAGICO]"
     
@@ -129,7 +129,7 @@ def analise_tecnica_primo(index):
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-PRIMO]"
     
     if is_analise_over:
-        return "The Robot Recomend Enter in << OVER 2 >>  [MATRIZ-PRIMO]"
+        return "The Robot Recomend Enter in << OVER 2,25 >>  [MATRIZ-PRIMO]"
     
     if is_analise_under_2:
         return "The Robot Recomend Enter in << UNDER 2,5 >> [MATRIZ-PRIMO]"
