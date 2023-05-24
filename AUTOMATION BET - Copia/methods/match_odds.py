@@ -307,10 +307,6 @@ class MatchOdds:
 
     @property
     def under_1_5_primo(self):
-        SPECIAL_LEAGUES = [
-            'france - ligue 2',
-            'league one',
-            ]
         
         NOT_ACCEPTABLE_LEAGUES = [
             'italy - serie c - group a',
@@ -322,7 +318,10 @@ class MatchOdds:
             'italy - serie d - group d',
             'portugal - liga portugal 2',
             'zambia - super league',
-            'spain - la liga 2'
+            'spain - la liga 2',
+            'france - ligue 2',
+            'league one'
+            
             ]
             
         check = (
@@ -338,9 +337,6 @@ class MatchOdds:
         if check and get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
             
             if self.is_league_allowed:
-
-                if (get_name(self.site) in SPECIAL_LEAGUES):
-                    return "The [ROBOT] Recommend enter in [   <<TEST>>   ]"
 
                 return "The [ROBOT] Recommend enter in [    <<PRIMO>>     ]"
             else:
@@ -365,7 +361,8 @@ class MatchOdds:
             'portugal - liga portugal 2',
             'zambia - super league',
             'spain - la liga 2',
-            'france - ligue 2'
+            'france - ligue 2',
+            'league one'
             ]
         check = (
             
