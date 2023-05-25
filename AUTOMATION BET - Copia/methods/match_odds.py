@@ -362,7 +362,10 @@ class MatchOdds:
             'zambia - super league',
             'spain - la liga 2',
             'france - ligue 2',
-            'league one'
+            'league one',
+            'france - national',
+            'france - nacional',
+            'scotland - championship'
             ]
         check = (
             
@@ -395,7 +398,20 @@ class MatchOdds:
             'brazil - parabaino',
             'brazil - paulista a1',
             'zambia - super league',
-            'spain - la liga 2'
+            'spain - la liga 2',
+            'italy - serie c - group a',
+            'italy - serie c - group c',
+            'italy - serie c - group d',
+            'italy - serie d - group a',
+            'italy - serie d - group b',
+            'italy - serie d - group c',
+            'italy - serie d - group d',
+            'portugal - liga portugal 2',
+            'zambia - super league',
+            'league one',
+            'france - national',
+            'france - nacional',
+            'scotland - championship',
             
         ]
        
@@ -416,6 +432,7 @@ class MatchOdds:
             if self.is_league_allowed:
 
                 if get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
+    
 
                     return "The [ROBOT] Recommend enter in <<[MATRIZ-MAGICO] in this match"
 
