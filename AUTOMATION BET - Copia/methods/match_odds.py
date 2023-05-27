@@ -365,7 +365,14 @@ class MatchOdds:
             'league one',
             'france - national',
             'france - nacional',
-            'scotland - championship'
+            'scotland - championship',
+            'japan - j1 league',
+            'japan - j2 league',
+            'argentina - primera nacional',
+            'south korea - k3 league',
+            'brazil - serie a',
+            'brazil - serie b',
+            'brazil - serie d',
             ]
         check = (
             
@@ -412,6 +419,11 @@ class MatchOdds:
             'france - national',
             'france - nacional',
             'scotland - championship',
+            'japan - j1 league',
+            'japan - j2 league',
+            'argentina - primera nacional',
+            'brazil - serie b',
+            'brazil - serie d',
             
         ]
        
