@@ -149,3 +149,11 @@ class ScoringStats:
         value = self.get_hasChangeGoalsAway + self.get_hasChangeGoalsHome
 
         return value
+
+    @property 
+    def get_averageGoalChangeGame(self):
+        table = self._get_table_home_scoring()
+        
+        average  = float(table[2].find_all('tr')[3].find_all('td')[2].find('font').text)
+       
+        return average

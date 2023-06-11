@@ -147,6 +147,7 @@ class MatchOdds:
         check = (
             #int(self.CONTEXTUAL._get_overTwo) < 56 and
             self.SCORING_STATIST.get_hasChangeGoalsGame < 2.80 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.80 and
             star_level and 
             self.TABLE_RESULT_PASSED.get_home_probability_to_draw() >= 35 and
             self.TABLE_RESULT_PASSED.get_away_probability_to_draw() >= 35
@@ -241,13 +242,14 @@ class MatchOdds:
         ]
        
         if get_name(self.site) == 'bundesliga':
-            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75:
+            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75 and self.SCORING_STATIST.get_averageGoalChangeGame < 2.75:
                 special = True
 
         is_true = (
             self.deep_analize_under1_half and
             self.analize_probability_to_draw_performance < 15 and
-            (special or self.SCORING_STATIST.get_hasChangeGoalsGame < 2.67)
+            (special or (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.67 and
+                        self.SCORING_STATIST.get_averageGoalChangeGame < 2.67))
             
         )
         
@@ -329,7 +331,8 @@ class MatchOdds:
             self.deep_analize_primo and
             self.verify_diference_score_change('draw') <= 0.50 and
             self.analize_probability_to_draw_performance < 15 and
-            self.SCORING_STATIST.get_hasChangeGoalsGame < 2.67 and
+            self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.40 and
             self.check_under1_half == False
 
         )
@@ -380,6 +383,7 @@ class MatchOdds:
             self.verify_diference_score_change('draw') <= 0.50 and
             self.analize_probability_to_draw_performance <= 26 and
             self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.40 and
             self.check_under1_half == False and
             self.under_1_5_primo == False and 
             self.matriz_magico == False
@@ -428,13 +432,14 @@ class MatchOdds:
         ]
        
         if get_name(self.site) == 'bundesliga':
-            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75:
+            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75 and self.SCORING_STATIST.get_averageGoalChangeGame < 2.75:
                 special = True
 
         is_true = (
             self.deep_analize_under1_half and
             self.analize_probability_to_draw_performance <=26 and
-            (special or self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40) and
+            (special or (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40 and
+                         self.SCORING_STATIST.get_averageGoalChangeGame < 2.40)) and
             self.check_under1_half == False
             
         )
@@ -483,6 +488,7 @@ class MatchOdds:
             self.home_score_more('draw') == False and
             self.verify_media_score_change < 1.66 and
             self.SCORING_STATIST.get_hasChangeGoalsGame < 2.80 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.80 and
             self.verify_diference_score_change('draw') < 1
             
         )
