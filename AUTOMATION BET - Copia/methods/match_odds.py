@@ -232,7 +232,7 @@ class MatchOdds:
 
     @property
     def check_under1_half(self):
-        special = False
+        
         NOT_ACCEPTABLE_LEAGUES = [
             'brazil - parabaino',
             'brazil - paulista a1',
@@ -241,15 +241,13 @@ class MatchOdds:
             
         ]
        
-        if get_name(self.site) == 'bundesliga':
-            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75 and self.SCORING_STATIST.get_averageGoalChangeGame < 2.75:
-                special = True
+    
 
         is_true = (
             self.deep_analize_under1_half and
             self.analize_probability_to_draw_performance < 15 and
-            (special or (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.67 and
-                        self.SCORING_STATIST.get_averageGoalChangeGame < 2.67))
+            (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.67 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.67)
             
         )
         
@@ -322,7 +320,12 @@ class MatchOdds:
             'zambia - super league',
             'spain - la liga 2',
             'france - ligue 2',
-            'league one'
+            'league one',
+            'argentina - primera c'
+            'argentina - primera c - apertura',
+            'argentina - primera c - clausura',
+            'brazil - serie d',
+            'england - national league'
             
             ]
             
@@ -352,6 +355,7 @@ class MatchOdds:
     def matriz_primo(self):
         """a mudanca principal esta na performance de 26
         E NO EXPECTED GOAL DE 2,67 PARA 2,40"""
+        
         
         NOT_ACCEPTABLE_LEAGUES = [
             'italy - serie c - group a',
@@ -404,7 +408,7 @@ class MatchOdds:
     
     @property
     def matriz_magico(self):
-        special = False
+       
         NOT_ACCEPTABLE_LEAGUES = [
             'brazil - parabaino',
             'brazil - paulista a1',
@@ -431,15 +435,13 @@ class MatchOdds:
             
         ]
        
-        if get_name(self.site) == 'bundesliga':
-            if self.SCORING_STATIST.get_hasChangeGoalsGame < 2.75 and self.SCORING_STATIST.get_averageGoalChangeGame < 2.75:
-                special = True
+       
 
         is_true = (
             self.deep_analize_under1_half and
             self.analize_probability_to_draw_performance <=26 and
-            (special or (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40 and
-                         self.SCORING_STATIST.get_averageGoalChangeGame < 2.40)) and
+            (self.SCORING_STATIST.get_hasChangeGoalsGame < 2.40 and
+                self.SCORING_STATIST.get_averageGoalChangeGame < 2.40) and
             self.check_under1_half == False
             
         )

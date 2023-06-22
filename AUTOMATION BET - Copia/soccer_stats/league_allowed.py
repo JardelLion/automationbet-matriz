@@ -43,9 +43,11 @@ leagues = [
     ],
     'argentina': [
         'Argentina - Primera Nacional',
+        'Argentina - Primera C',
         'Argentina - Primera C - Apertura',
         'Argentina - Primera C - Clausura',
         'Argentina - Liga Profesional'
+        
     ],
     'japao': [
         'Japan - J1 League',
