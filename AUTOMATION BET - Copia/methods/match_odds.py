@@ -407,6 +407,65 @@ class MatchOdds:
         return False
     
     @property
+    def matriz_full(self):
+        """
+        """
+        
+        
+        # NOT_ACCEPTABLE_LEAGUES = [
+        #     'italy - serie c - group a',
+        #     'italy - serie c - group c',
+        #     'italy - serie c - group d',
+        #     'italy - serie d - group a',
+        #     'italy - serie d - group b',
+        #     'italy - serie d - group c',
+        #     'italy - serie d - group d',
+        #     'portugal - liga portugal 2',
+        #     'zambia - super league',
+        #     'spain - la liga 2',
+        #     'france - ligue 2',
+        #     'league one',
+        #     'france - national',
+        #     'france - nacional',
+        #     'scotland - championship',
+        #     'japan - j1 league',
+        #     'japan - j2 league',
+        #     'argentina - primera nacional',
+        #     'south korea - k3 league',
+        #     'brazil - serie a',
+        #     'brazil - serie b',
+        #     'brazil - serie d',
+        #     ]
+        check = (
+            
+            self.deep_analize_primo and
+            self.verify_diference_score_change('draw') <= 0.50 and
+            self.analize_probability_to_matriz_full_performance and
+            self.SCORING_STATIST.get_hasChangeGoalsGame < 2.80 and
+            self.SCORING_STATIST.get_averageGoalChangeGame < 2.80 and
+            self.check_under1_half == False and
+            self.under_1_5_primo == False and 
+            self.matriz_magico == False and
+            self.matriz_primo == False
+        )
+
+        if check and get_name(self.site): #not in NOT_ACCEPTABLE_LEAGUES:
+            
+            if self.is_league_allowed:
+
+                # if (get_name(self.site) in SPECIAL_LEAGUES):
+                #     return "The [ROBOT] Recommend enter in [   <<TEST>>   ]"
+
+                return "The [ROBOT] Recommend enter in [    <<MATRIZ-FULL>>     ]"
+            else:
+                print("League NOt Allowed (MATRIZ-FULL)", get_name(self.site))
+
+        return False
+    
+    
+    
+    
+    @property
     def matriz_magico(self):
        
         NOT_ACCEPTABLE_LEAGUES = [
@@ -511,6 +570,9 @@ class MatchOdds:
 
 
         return False
+    
+    
+    
 
 
     @property
@@ -542,7 +604,53 @@ class MatchOdds:
         return False
 
 
-    
+    @property
+    def analize_probability_to_matriz_full_performance(self):
+        
+        def performance_full_highter(performance_home, performance_away):
+            if(performance_home > performance_away):
+                return performance_home - performance_away
+            
+            elif performance_away > performance_home:
+                return performance_away - performance_home
+            
+            else:
+                return performance_home - performance_away
+            
+        performance_result_matriz_full = {
+            'points': performance_full_highter(
+                self.PERFORMANCE.get_home_change_make_points,
+                self.PERFORMANCE.get_away_change_make_points),
+            
+            'score': performance_full_highter(
+                self.PERFORMANCE.get_home_change_score,
+                self.PERFORMANCE.get_away_change_score),
+            
+            'conceded': performance_full_highter(
+                self.PERFORMANCE.get_home_change_conceded,
+                self.PERFORMANCE.get_away_change_conceded
+            )
+            
+        }
+        
+        
+            
+       
+            
+        is_true = (
+            performance_result_matriz_full['points'] <= 33 and
+            performance_result_matriz_full['score'] <= 33 and
+            performance_result_matriz_full['conceded'] <= 33)
+        
+        if (is_true):
+            return True
+        
+        else:
+            return False
+        
+        
+
+                      
     @property
     def analize_probability_to_draw_performance(self):
         performance_home_values = [
