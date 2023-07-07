@@ -32,7 +32,8 @@ analise_fundamentalista = []
 
 
 for number_row in range(1, 51):
-    """Estamos alimentando todas as nossas listas com os valores que estao na planilha."""
+    """Estamos alimentando todas as nossas listas com os valores que estao na planilha.
+    da analise de matriz primo e mariz magico"""
     
     if sheet['a' + str(number_row)].value is not None:
         # verificando se o valore nao e None

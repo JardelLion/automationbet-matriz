@@ -15,8 +15,9 @@ from pathlib import Path
 from soccer_stats.get_name_league import get_name
 from soccer_stats.table_result_passed import TableResultPassed
 
+
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\7-JULHO\\9t').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\7-JULHO\\8').glob("**\*.html")
 
 paths = []
 for path in recent_paths:
@@ -70,6 +71,7 @@ for pos, file in enumerate(paths):
     
     if match.matriz_full:
         print(f'                   {game}: league: {league}')
+       
         print('==>> ', match.matriz_full,  ' ', match.get_performance())#, match.get_dateOfGame())
         TableResultPassed(site).show_statics()
 

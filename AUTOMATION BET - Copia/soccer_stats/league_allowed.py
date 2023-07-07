@@ -62,11 +62,12 @@ leagues = [
     'alemanha': [
         'Bundesliga',
         'Germany - 2. Liga'
-    ]#,
-    # 'liga_portuguesa': [
-    #     'Portugal - Primeira Liga', # e a mesma coisa que liga portugal
-    #     'Portugal - Liga Portugal',
-    #     'Portugal - Liga Portugal 2'
+    ],
+     'liga_portuguesa': [
+         'Portugal - Primeira Liga', # e a mesma coisa que liga portugal
+         'Portugal - Liga Portugal',
+         'Portugal - Liga Portugal 2',
+         'Portugal - Segunda Liga']
     ,
     'scotland': [
         'Scotland - Championship'
