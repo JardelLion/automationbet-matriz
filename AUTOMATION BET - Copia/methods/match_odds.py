@@ -412,7 +412,19 @@ class MatchOdds:
         """
         
         
-        # NOT_ACCEPTABLE_LEAGUES = [
+        NOT_ACCEPTABLE_LEAGUES = [
+            'spain - la liga 2',
+            'portugal - liga portugal 2',
+            'portugal - segunda liga',
+            'italy - serie a',
+            'italy - serie c - group a',
+            'scotland - championship',
+            'france - national',
+            'france - nacional',
+            'italy - serie c - group b',
+            'england - national league'
+             
+        ]
         #     'italy - serie c - group a',
         #     'italy - serie c - group c',
         #     'italy - serie c - group d',
@@ -449,7 +461,7 @@ class MatchOdds:
             self.matriz_primo == False
         )
 
-        if check and get_name(self.site): #not in NOT_ACCEPTABLE_LEAGUES:
+        if check and get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
             
             if self.is_league_allowed:
 

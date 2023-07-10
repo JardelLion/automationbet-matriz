@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
-sheet = workbook[get_sheet_name('julho')]
+workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
+sheet = workbook[get_sheet_name('marco')]
 
-question_day =  '8/7/2023' #data 10/5/2010
+question_day =  '31/3/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -27,7 +27,7 @@ under_2_5 = []
 analise_fundamentalista = []
 
 
-for number_row in range(1, 51):
+for number_row in range(1, 300):
     """Estamos alimentando todas as nossas listas com os valores que estao na planilha."""
     
     if sheet['a' + str(number_row)].value is not None:
@@ -81,7 +81,7 @@ def analise_tecnica_matriz_full(index):
     if is_analise_over:
         return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
     else:
-        return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-FULL]"
+         return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-FULL]"
 
 
 
@@ -91,7 +91,7 @@ for index in range(1, len(analise_fundamentalista)):
 
     if question_day == 'all':
     
-        if str(analise_fundamentalista[index]).lower() == 'matriz-full':
+        if str(analise_fundamentalista[index]).lower().strip() == 'matriz-full':
             #do the analise tecnica baseada nas regras do magico
             print(f'{data[index].day}/{data[index].month}/{data[index].year}', game[index] + " || ", analise_tecnica_matriz_full(index))
             print()
