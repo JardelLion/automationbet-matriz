@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
-sheet = workbook[get_sheet_name('marco')]
+sheet = workbook[get_sheet_name('abril')]
 
-question_day =  '31/3/2022' #data 10/5/2010
+question_day =  '30/4/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -19,6 +19,7 @@ game = []
 home = []
 draw = []
 away = []
+league = []
 
 under_1_5 = []
 over_2_5 = []
@@ -39,20 +40,32 @@ for number_row in range(1, 300):
         home.append(sheet['c' + str(number_row)].value)
         draw.append(sheet['d' + str(number_row)].value)
         away.append(sheet['e' + str(number_row)].value)
+     
        
         under_1_5.append(sheet['f' + str(number_row)].value)
         over_2_5.append(sheet['g' + str(number_row)].value)
         under_2_5.append(sheet['h' + str(number_row)].value)
-        
+
         analise_fundamentalista.append(sheet['j' + str(number_row)].value)
+        
+        league.append(
+            str(sheet['n' + str(number_row)].value).upper().strip()
+            )
     
 
 
      
 def analise_tecnica_matriz_full(index):
     '''
-    matriz full baseane na matriz do primo especialmente
+    matriz full baseado na matriz do primo especialmente
     '''
+    
+    ALLOWED_OVER_LEAGUE = [
+        'JAPAN - J2 LEAGUE',
+        'FRANCE - LIGUE 2',
+        'LEAGUE ONE',
+        'LEAGUE TWO'
+    ]
     
     is_analise_under = (
         under_1_5[index] <= 2.90 and
@@ -61,7 +74,8 @@ def analise_tecnica_matriz_full(index):
       
         # away[index] > 2.15 and
         
-        over_2_5[index] >= 2 
+        over_2_5[index] >= 2 and 
+        league[index] not in ALLOWED_OVER_LEAGUE
              
     )
  
@@ -79,6 +93,10 @@ def analise_tecnica_matriz_full(index):
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
     
     if is_analise_over:
+        if league[index] == 'LEAGUE ONE'.upper().strip():
+            
+            return 'The Robot Recomend Enter in << OVER 2,25 >>  [MATRIZ-FULL]' 
+        
         return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
     else:
          return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-FULL]"

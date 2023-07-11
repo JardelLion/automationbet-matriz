@@ -414,6 +414,8 @@ class MatchOdds:
         
         NOT_ACCEPTABLE_LEAGUES = [
             'spain - la liga 2',
+            'portugal - primeira liga',
+            'portugal - liga portugal',
             'portugal - liga portugal 2',
             'portugal - segunda liga',
             'italy - serie a',
@@ -422,7 +424,8 @@ class MatchOdds:
             'france - national',
             'france - nacional',
             'italy - serie c - group b',
-            'england - national league'
+            'england - national league',
+            'argentina - primera nacional'
              
         ]
         #     'italy - serie c - group a',
