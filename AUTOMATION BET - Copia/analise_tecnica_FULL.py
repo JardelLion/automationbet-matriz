@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
-sheet = workbook[get_sheet_name('abril')]
+sheet = workbook[get_sheet_name('maio')]
 
-question_day =  '30/4/2022' #data 10/5/2010
+question_day =  '11/5/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -61,10 +61,13 @@ def analise_tecnica_matriz_full(index):
     '''
     
     ALLOWED_OVER_LEAGUE = [
+        'JAPAN - J1 LEAGUE',
         'JAPAN - J2 LEAGUE',
         'FRANCE - LIGUE 2',
+        'CHAMPIONSHIP',
         'LEAGUE ONE',
-        'LEAGUE TWO'
+        'LEAGUE TWO',
+        'BRAZIL - SERIE A'
     ]
     
     is_analise_under = (

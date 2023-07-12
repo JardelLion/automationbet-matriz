@@ -425,7 +425,12 @@ class MatchOdds:
             'france - nacional',
             'italy - serie c - group b',
             'england - national league',
-            'argentina - primera nacional'
+            'argentina - primera nacional',
+            'south korea - k league 1',
+            'argentina - primera c',
+            'argentina - primera c - apertura',
+            'argentina - primera c - clausura',
+            'la liga'
              
         ]
         #     'italy - serie c - group a',
