@@ -435,7 +435,9 @@ class MatchOdds:
             'south africa - premier division',
             'south africa - first division',
             'japan - j1 league',
-            'argentina - liga profesional'
+            'argentina - liga profesional',
+            'south korea - k league 2',
+            'japan - j3 league'
              
         ]
         #     'italy - serie c - group a',

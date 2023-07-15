@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
-sheet = workbook[get_sheet_name('julho')]
+workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
+sheet = workbook[get_sheet_name('setembro')]
 
-question_day =  '16/7/2023' #data 10/5/2010
+question_day =  '30/9/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -88,7 +88,9 @@ def analise_tecnica_matriz_full(index):
         'south africa - premier division',
         'south africa - first division',
         'japan - j1 league',
-        'argentina - liga profesional'
+        'argentina - liga profesional',
+        'south korea - k league 2',
+        'japan - j3 league'
              
     ]
     
@@ -101,7 +103,8 @@ def analise_tecnica_matriz_full(index):
         'LEAGUE TWO',
         'BRAZIL - SERIE A',
         'JAPAN - J3 LEAGUE',
-        'SOUTH KOREA - K LEAGUE 2'
+        'SOUTH KOREA - K LEAGUE 2',
+        'BRAZIL - SERIE B'
     ]
     
     is_analise_under = (
