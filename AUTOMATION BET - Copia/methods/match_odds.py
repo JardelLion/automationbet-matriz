@@ -430,7 +430,12 @@ class MatchOdds:
             'argentina - primera c',
             'argentina - primera c - apertura',
             'argentina - primera c - clausura',
-            'la liga'
+            'brazil - serie d',
+            'south korea - k3 league',
+            'south africa - premier division',
+            'south africa - first division',
+            'japan - j1 league',
+            'argentina - liga profesional'
              
         ]
         #     'italy - serie c - group a',

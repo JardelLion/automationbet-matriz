@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
-sheet = workbook[get_sheet_name('maio')]
+workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
+sheet = workbook[get_sheet_name('julho')]
 
-question_day =  '11/5/2022' #data 10/5/2010
+question_day =  '16/7/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -56,9 +56,41 @@ for number_row in range(1, 300):
 
      
 def analise_tecnica_matriz_full(index):
-    '''
-    matriz full baseado na matriz do primo especialmente
-    '''
+    """_summary_
+    analisar as odds e encontrar um padrao para o mercado over 2,5 over 2,25 e under 2
+
+    Args:
+        NOT_ACCEPTABLE_LEAGUES - ligas nao permidas para trabalhar na matriz-full
+        ALLOWED_OVER_LEAGUE - ligas apenas permitidas para trabalhar over 2,5 e over 2,25
+ 
+    """
+    
+    NOT_ACCEPTABLE_LEAGUES = [
+        'spain - la liga 2',
+        'portugal - primeira liga',
+        'portugal - liga portugal',
+        'portugal - liga portugal 2',
+        'portugal - segunda liga',
+        'italy - serie a',
+        'italy - serie c - group a',
+        'scotland - championship',
+        'france - national',
+        'france - nacional',
+        'italy - serie c - group b',
+        'england - national league',
+        'argentina - primera nacional',
+        'south korea - k league 1',
+        'argentina - primera c',
+        'argentina - primera c - apertura',
+        'argentina - primera c - clausura',
+        'brazil - serie d',
+        'south korea - k3 league',
+        'south africa - premier division',
+        'south africa - first division',
+        'japan - j1 league',
+        'argentina - liga profesional'
+             
+    ]
     
     ALLOWED_OVER_LEAGUE = [
         'JAPAN - J1 LEAGUE',
@@ -67,7 +99,9 @@ def analise_tecnica_matriz_full(index):
         'CHAMPIONSHIP',
         'LEAGUE ONE',
         'LEAGUE TWO',
-        'BRAZIL - SERIE A'
+        'BRAZIL - SERIE A',
+        'JAPAN - J3 LEAGUE',
+        'SOUTH KOREA - K LEAGUE 2'
     ]
     
     is_analise_under = (
@@ -90,13 +124,43 @@ def analise_tecnica_matriz_full(index):
        
     )
     
+    IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA = (
+        
+        under_1_5[index] >= 2.60 and
+        over_2_5[index] <= 2.45 and
+        league[index] ==  'BRAZIL - SERIE A')
+        
+        
+    IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB = (
+        
+        under_1_5[index] >= 2.28 and
+        league[index] ==  'BRAZIL - SERIE B')
+        
+    
+    
+    
+    if IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA == True:
+        
+        return 'The Robot Recomend Enter in << --OVER 2,25-- >>  [MATRIZ-FULL]'
+     
+    elif IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB == True:
+        
+        return 'The Robot Recomend Enter in << --OVER 2,25-- >>  [MATRIZ-FULL]' 
+
+        
+    
+    
   
     
-    if is_analise_under:
+    if is_analise_under and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
     
-    if is_analise_over:
-        if league[index] == 'LEAGUE ONE'.upper().strip():
+    if is_analise_over and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
+        if league[index] in ['LEAGUE ONE',
+                             'BRAZIL - SERIE A',
+                             'JAPAN - J1 LEAGUE',
+                             'JAPAN - J3 LEAGUE',
+                             'LA LIGA']:
             
             return 'The Robot Recomend Enter in << OVER 2,25 >>  [MATRIZ-FULL]' 
         

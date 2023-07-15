@@ -17,7 +17,7 @@ from soccer_stats.table_result_passed import TableResultPassed
 
 
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\7-JULHO\\14').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\7-JULHO\\17').glob("**\*.html")
 
 paths = []
 for path in recent_paths:
@@ -57,16 +57,16 @@ for pos, file in enumerate(paths):
         
     
     if match.matriz_magico:
-        print(f'                   {game}: league: {league}')
-        print('==>> ', match.matriz_magico,  ' ', match.get_performance(), match.get_dateOfGame())
-        TableResultPassed(site).show_statics()
+         print(f'                   {game}: league: {league}')
+         print('==>> ', match.matriz_magico,  ' ', match.get_performance(), match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
 
     
 
     if match.matriz_primo:
-        print(f'                   {game}: league: {league}')
-        print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
-        TableResultPassed(site).show_statics()
+         print(f'                   {game}: league: {league}')
+         print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
         
     
     if match.matriz_full:
