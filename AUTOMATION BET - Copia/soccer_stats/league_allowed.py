@@ -77,7 +77,12 @@ leagues = [
         'South Africa - Premier Division',
         'South Africa - First Division'
     ],
-    'zambia': ['zambia - super league']
+    'zambia': ['zambia - super league'],
+    'usa': [
+        'USA - USL Championship',
+        'USA - USL League One',
+        'USA - NISA'
+    ]
     
     }
 ]

@@ -237,7 +237,10 @@ class MatchOdds:
             'brazil - parabaino',
             'brazil - paulista a1',
             'zambia - super league',
-            'spain - la liga 2'
+            'spain - la liga 2',
+            'usa - usl championship',
+            'usa - usl league one',
+            'usa - nisa'
             
         ]
        
@@ -325,7 +328,10 @@ class MatchOdds:
             'argentina - primera c - apertura',
             'argentina - primera c - clausura',
             'brazil - serie d',
-            'england - national league'
+            'england - national league',
+            'usa - usl championship',
+            'usa - usl league one',
+            'usa - nisa'
             
             ]
             
@@ -380,6 +386,10 @@ class MatchOdds:
             'brazil - serie a',
             'brazil - serie b',
             'brazil - serie d',
+            'usa - usl championship',
+            'usa - usl league one',
+            'usa - nisa'
+            
             ]
         check = (
             
@@ -518,6 +528,9 @@ class MatchOdds:
             'argentina - primera nacional',
             'brazil - serie b',
             'brazil - serie d',
+            'usa - usl championship',
+            'usa - usl league one',
+            'usa - nisa'
             
         ]
        

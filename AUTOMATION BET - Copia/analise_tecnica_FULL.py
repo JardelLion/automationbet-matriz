@@ -104,7 +104,10 @@ def analise_tecnica_matriz_full(index):
         'BRAZIL - SERIE A',
         'JAPAN - J3 LEAGUE',
         'SOUTH KOREA - K LEAGUE 2',
-        'BRAZIL - SERIE B'
+        'BRAZIL - SERIE B',
+        'USA - USL Championship',
+        'USA - USL League One',
+        'USA - NISA'
     ]
     
     is_analise_under = (
@@ -160,12 +163,15 @@ def analise_tecnica_matriz_full(index):
     
     if is_analise_over and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         if league[index] in ['LEAGUE ONE',
-                             'BRAZIL - SERIE A',
-                             'JAPAN - J1 LEAGUE',
-                             'JAPAN - J3 LEAGUE',
-                             'LA LIGA']:
+                            'BRAZIL - SERIE A',
+                            'JAPAN - J1 LEAGUE',
+                            'JAPAN - J3 LEAGUE',
+                            'LA LIGA',
+                            'USA - USL Championship',
+                            'USA - USL League One',
+                            'USA - NISA']:
             
-            return 'The Robot Recomend Enter in << OVER 2,25 >>  [MATRIZ-FULL]' 
+            return 'The Robot Recomend Enter in << @OVER 2,25 >>  [MATRIZ-FULL]' 
         
         return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
     else:
