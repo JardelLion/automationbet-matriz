@@ -79,9 +79,9 @@ leagues = [
     ],
     'zambia': ['zambia - super league'],
     'usa': [
+        'USA - MLS',
         'USA - USL Championship',
-        'USA - USL League One',
-        'USA - NISA'
+        'USA - USL League One'
     ]
     
     }

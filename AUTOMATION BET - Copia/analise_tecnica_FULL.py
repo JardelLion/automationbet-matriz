@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
-sheet = workbook[get_sheet_name('setembro')]
+sheet = workbook[get_sheet_name('junho')]
 
-question_day =  '30/9/2022' #data 10/5/2010
+question_day =  '27/6/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -57,11 +57,11 @@ for number_row in range(1, 300):
      
 def analise_tecnica_matriz_full(index):
     """_summary_
-    analisar as odds e encontrar um padrao para o mercado over 2,5 over 2,25 e under 2
+    analisar as odds e encontrar um padrao para o mercado over 2,5 over 2 e under 2
 
     Args:
         NOT_ACCEPTABLE_LEAGUES - ligas nao permidas para trabalhar na matriz-full
-        ALLOWED_OVER_LEAGUE - ligas apenas permitidas para trabalhar over 2,5 e over 2,25
+        ALLOWED_OVER_LEAGUE - ligas apenas permitidas para trabalhar over 2,5 e over 2
  
     """
     
@@ -90,11 +90,14 @@ def analise_tecnica_matriz_full(index):
         'japan - j1 league',
         'argentina - liga profesional',
         'south korea - k league 2',
-        'japan - j3 league'
+        'japan - j3 league',
+        'zambia - super league',
+        'italy - serie d - group b'
              
     ]
     
     ALLOWED_OVER_LEAGUE = [
+        'ITALY - SERIE B',
         'JAPAN - J1 LEAGUE',
         'JAPAN - J2 LEAGUE',
         'FRANCE - LIGUE 2',
@@ -105,9 +108,10 @@ def analise_tecnica_matriz_full(index):
         'JAPAN - J3 LEAGUE',
         'SOUTH KOREA - K LEAGUE 2',
         'BRAZIL - SERIE B',
+        'USA - MLS',
         'USA - USL Championship',
         'USA - USL League One',
-        'USA - NISA'
+        'ITALY - SERIE D - GROUP D'
     ]
     
     is_analise_under = (
@@ -144,38 +148,47 @@ def analise_tecnica_matriz_full(index):
         
     
     
-    
-    if IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA == True:
-        
-        return 'The Robot Recomend Enter in << --OVER 2,25-- >>  [MATRIZ-FULL]'
-     
-    elif IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB == True:
-        
-        return 'The Robot Recomend Enter in << --OVER 2,25-- >>  [MATRIZ-FULL]' 
 
-        
-    
-    
-  
-    
     if is_analise_under and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
     
     if is_analise_over and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         if league[index] in ['LEAGUE ONE',
+                            'CHAMPIONSHIP',
                             'BRAZIL - SERIE A',
+                            'ITALY - SERIE D - GROUP A',
+                            'ITALY - SERIE D - GROUP C',
+                            'ITALY - SERIE D - GROUP D',
                             'JAPAN - J1 LEAGUE',
                             'JAPAN - J3 LEAGUE',
                             'LA LIGA',
-                            'USA - USL Championship',
-                            'USA - USL League One',
+                            'USA - MLS',
+                            'USA - USL CHAMPIONSHIP',
+                            'USA - USL LEAGUE ONE',
                             'USA - NISA']:
             
-            return 'The Robot Recomend Enter in << @OVER 2,25 >>  [MATRIZ-FULL]' 
+            if under_1_5[index] >= 3.70:
+                
+                return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]' 
+                
+            return 'The Robot Recomend Enter in << @OVER 2 >>  [MATRIZ-FULL]' 
         
         return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
+    
+     
+    if IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA == True:
+        
+        return 'The Robot Recomend Enter in << -- OVER 2 -- >>  [MATRIZ-FULL]'
+     
+    elif IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB == True:
+        
+        return 'The Robot Recomend Enter in << -- OVER 2 -- >>  [MATRIZ-FULL]' 
+
+        
+    
+    
     else:
-         return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-FULL]"
+         return None
 
 
 
@@ -205,14 +218,22 @@ for index in range(1, len(analise_fundamentalista)):
         if str(analise_fundamentalista[index]).lower() == 'matriz-full':
             #do the analise tecnica baseada nas regras do magico
             if choosed_data == question_day:
-                print(choosed_data, game[index] + " || ", analise_tecnica_matriz_full(index))
-                print()
+                if analise_tecnica_matriz_full(index) == None:
+                    pass
+                else:
+                    
+                    print(choosed_data, game[index] + " || ", analise_tecnica_matriz_full(index))
+                    print()
         
         elif str(analise_fundamentalista[index]).lower() == 'matriz-full':
         # do the analise tecnica baseada nas regras do primo
             if choosed_data == question_day:
-                print(f'{data[index].day}/{data[index].month}/{data[index].year}', game[index] + " || ", analise_tecnica_matriz_full(index))
-                print()
+                if analise_tecnica_matriz_full(index) == None:
+                    pass
+                else:
+                    
+                    print(f'{data[index].day}/{data[index].month}/{data[index].year}', game[index] + " || ", analise_tecnica_matriz_full(index))
+                    print()
             
 
         else:
