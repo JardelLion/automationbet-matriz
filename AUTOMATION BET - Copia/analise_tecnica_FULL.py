@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2022/MATRIZ-FULL-2022.xlsx')
-sheet = workbook[get_sheet_name('junho')]
+workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
+sheet = workbook[get_sheet_name('fevereiro')]
 
-question_day =  '27/6/2022' #data 10/5/2010
+question_day =  '25/2/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -24,6 +24,7 @@ league = []
 under_1_5 = []
 over_2_5 = []
 under_2_5 = []
+expected_goal = []
 
 analise_fundamentalista = []
 
@@ -51,6 +52,8 @@ for number_row in range(1, 300):
         league.append(
             str(sheet['n' + str(number_row)].value).upper().strip()
             )
+        
+        expected_goal.append(sheet['o' + str(number_row)].value)
     
 
 
@@ -92,26 +95,24 @@ def analise_tecnica_matriz_full(index):
         'south korea - k league 2',
         'japan - j3 league',
         'zambia - super league',
-        'italy - serie d - group b'
+        'italy - serie c - group a',
+        'italy - serie c - group c',
+        'italy - serie c - group d',
+        'italy - serie d - group a',
+        'italy - serie d - group b',
+        'italy - serie d - group c',
+        'italy - serie d - group d',
              
     ]
     
     ALLOWED_OVER_LEAGUE = [
         'ITALY - SERIE B',
-        'JAPAN - J1 LEAGUE',
         'JAPAN - J2 LEAGUE',
         'FRANCE - LIGUE 2',
         'CHAMPIONSHIP',
         'LEAGUE ONE',
         'LEAGUE TWO',
-        'BRAZIL - SERIE A',
-        'JAPAN - J3 LEAGUE',
-        'SOUTH KOREA - K LEAGUE 2',
-        'BRAZIL - SERIE B',
-        'USA - MLS',
-        'USA - USL Championship',
-        'USA - USL League One',
-        'ITALY - SERIE D - GROUP D'
+        'BRAZIL - SERIE A'
     ]
     
     is_analise_under = (
@@ -134,16 +135,33 @@ def analise_tecnica_matriz_full(index):
        
     )
     
+    is_analise_over175 = (
+        under_1_5[index] >= 2.60 and
+     
+        # home[index] > 2.15 and
+      
+        # away[index] > 2.15 and
+        expected_goal[index] >= 2 and
+        expected_goal[index] != 0 and
+        
+        over_2_5[index] <= 2.55
+        
+    )
+    
     IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA = (
         
         under_1_5[index] >= 2.60 and
         over_2_5[index] <= 2.45 and
+        expected_goal[index] >= 2.10 and
+        expected_goal[index] != 0 and
         league[index] ==  'BRAZIL - SERIE A')
         
         
     IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB = (
         
         under_1_5[index] >= 2.28 and
+        expected_goal[index] <= 1.60 and
+        expected_goal[index] != 0 and
         league[index] ==  'BRAZIL - SERIE B')
         
     
@@ -152,37 +170,54 @@ def analise_tecnica_matriz_full(index):
     if is_analise_under and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
     
+    
     if is_analise_over and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         if league[index] in ['LEAGUE ONE',
                             'CHAMPIONSHIP',
                             'BRAZIL - SERIE A',
-                            'ITALY - SERIE D - GROUP A',
-                            'ITALY - SERIE D - GROUP C',
-                            'ITALY - SERIE D - GROUP D',
-                            'JAPAN - J1 LEAGUE',
-                            'JAPAN - J3 LEAGUE',
                             'LA LIGA',
-                            'USA - MLS',
-                            'USA - USL CHAMPIONSHIP',
-                            'USA - USL LEAGUE ONE',
-                            'USA - NISA']:
+                            'JAPAN - J2 LEAGUE',
+                            'ITALY - SERIE B'
+                            ]:
             
+            
+            
+            if league[index] == 'LEAGUE ONE':
+                if under_1_5[index] >= 3.70:
+                    
+                    return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                
+                return 'The Robot Recomend Enter in << @OVER 1,75 >>  [MATRIZ-FULL]'
+            
+            if league[index] == 'JAPAN - J2 LEAGUE':
+                if under_1_5[index] >= 3.70:
+                    
+                    return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                else:
+                    
+                    return None
+                
             if under_1_5[index] >= 3.70:
                 
-                return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]' 
+                return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                    
+                 
                 
             return 'The Robot Recomend Enter in << @OVER 2 >>  [MATRIZ-FULL]' 
         
         return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
     
-     
+    if is_analise_over175:
+        
+        return "The Robot Recomend Enter in << OVER 1,75 >> [MATRIZ-FULL]"
+         
     if IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA == True:
         
-        return 'The Robot Recomend Enter in << -- OVER 2 -- >>  [MATRIZ-FULL]'
+        return 'The Robot Recomend Enter in << -- OVER 1,75 -- >>  [MATRIZ-FULL]'
      
     elif IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilB == True:
         
-        return 'The Robot Recomend Enter in << -- OVER 2 -- >>  [MATRIZ-FULL]' 
+        return 'The Robot Recomend Enter in << -- under 1,75 -- >>  [MATRIZ-FULL]' 
 
         
     

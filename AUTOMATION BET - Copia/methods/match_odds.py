@@ -452,7 +452,13 @@ class MatchOdds:
             'south korea - k league 2',
             'japan - j3 league',
             'zambia - super league',
-            'italy - serie d - group b'
+            'italy - serie c - group a',
+            'italy - serie c - group c',
+            'italy - serie c - group d',
+            'italy - serie d - group a',
+            'italy - serie d - group b',
+            'italy - serie d - group c',
+            'italy - serie d - group d',
              
         ]
         #     'italy - serie c - group a',
@@ -498,7 +504,7 @@ class MatchOdds:
                 # if (get_name(self.site) in SPECIAL_LEAGUES):
                 #     return "The [ROBOT] Recommend enter in [   <<TEST>>   ]"
 
-                return "The [ROBOT] Recommend enter in [    <<MATRIZ-FULL>>     ]"
+                return f"The [ROBOT] Recommend enter in [    <<MATRIZ-FULL({self.SCORING_STATIST.get_averageGoalChangeGame})>>     ]"
             else:
                 print("League NOt Allowed (MATRIZ-FULL)", get_name(self.site))
 
