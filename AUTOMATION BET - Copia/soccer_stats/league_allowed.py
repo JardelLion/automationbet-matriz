@@ -15,8 +15,9 @@ leagues = [
     'laliga': [
         'La Liga',
         'Spain - La Liga 2',
-        'Spain - Tercera Div. Gr. 1',
-        'Spain - Tercera Div. Gr. 3'
+        # 'Spain - Tercera Div. Gr. 1',
+        # 'Spain - Tercera Div. Gr. 3'
+        
     ],
     'brazil': [
         'Brazil - Serie A',
