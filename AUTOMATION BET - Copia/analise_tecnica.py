@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ.xlsx')
-sheet = workbook[get_sheet_name('julho')]
+sheet = workbook[get_sheet_name('maio')]
 
-question_day =  '23/7/2023' #data 10/5/2010
+question_day =  'all' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -29,6 +29,7 @@ under_1_5_pinnacle = []
 over_2_5_pinnacle = []
 under_2_5_pinnacle = []
 analise_fundamentalista = []
+league = []
 
 
 for number_row in range(1, 51):
@@ -54,6 +55,7 @@ for number_row in range(1, 51):
         over_2_5_pinnacle.append(sheet['m' + str(number_row)].value)
         under_2_5_pinnacle.append(sheet['n' + str(number_row)].value)
         analise_fundamentalista.append(sheet['o' + str(number_row)].value)
+        league.append(sheet['s' + str(number_row)].value)
     
 
 
@@ -67,8 +69,13 @@ def analise_tecnica_magico(index):
         away[index] > 2.15 and
         away_pinnacle[index] > 2.15 and
         over_2_5[index] >= 2 and
-        over_2_5_pinnacle[index] >= 2.09         
+        over_2_5_pinnacle[index] >= 2.09 and
+        league[index].strip() not in [
+            'CHAMPIONSHIP'
+        ] 
+             
     )
+   
  
    
     is_analise_over = (
@@ -81,6 +88,7 @@ def analise_tecnica_magico(index):
   
     
     if is_analise_under:
+        
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-MAGICO]"
     
     if is_analise_over:
@@ -98,7 +106,10 @@ def analise_tecnica_primo(index):
         away[index] > 2.15 and
         away_pinnacle[index] > 2.15 and
         over_2_5[index] >= 2 and
-        over_2_5_pinnacle[index] >= 2.09         
+        over_2_5_pinnacle[index] >= 2.09 and
+        league[index].strip() not in [
+            'CHAMPIONSHIP'
+        ]        
     )
  
    

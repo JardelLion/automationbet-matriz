@@ -363,10 +363,28 @@ class MatchOdds:
     def matriz_primo(self):
         """a mudanca principal esta na performance de 26
         E NO EXPECTED GOAL DE 2,67 PARA 2,40"""
+        test = [
+            
+            
+        ]
         
         
         NOT_ACCEPTABLE_LEAGUES = [
+            'italy - serie b',
+            'portugal - primeira liga', # e a mesma coisa que liga portugal
+            'portugal - liga portugal',
+            'portugal - liga portugal 2',
+            'argentina - liga profesional',
+            'italy - serie a',
+            'brazil - serie a',
+            'brazil - serie b',
+            'argentina - primera c',
+            'argentina - primera c - apertura',
+            'argentina - primera c - clausura',
+            'south africa - premier division',
+            'south africa - first division',
             'italy - serie c - group a',
+            'italy - serie c - group b',
             'italy - serie c - group c',
             'italy - serie c - group d',
             'italy - serie d - group a',
@@ -383,8 +401,14 @@ class MatchOdds:
             'scotland - championship',
             'japan - j1 league',
             'japan - j2 league',
+            'japan - j3 league',
             'argentina - primera nacional',
+            'south korea - k1 league',
+            'south korea - k2 league',
             'south korea - k3 league',
+            'south korea - k league 1',
+            'south korea - k league 2',
+            'south korea - k league 3',
             'brazil - serie a',
             'brazil - serie b',
             'brazil - serie d',
@@ -408,7 +432,11 @@ class MatchOdds:
 
         if check and get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
             
+            
             if self.is_league_allowed:
+                
+                if get_name(self.site) in test:
+                    return 'test[MATRIZ-PRIMO]'
 
                 # if (get_name(self.site) in SPECIAL_LEAGUES):
                 #     return "The [ROBOT] Recommend enter in [   <<TEST>>   ]"
@@ -436,6 +464,8 @@ class MatchOdds:
             'scotland - championship',
             'france - national',
             'france - nacional',
+            'france - ligue 2',
+            'premier league',
             'italy - serie c - group b',
             'england - national league',
             'argentina - primera nacional',
@@ -459,6 +489,9 @@ class MatchOdds:
             'italy - serie d - group b',
             'italy - serie d - group c',
             'italy - serie d - group d',
+            'usa - usl league one',
+            'brazil - serie a',
+            'brazil - serie b'
              
         ]
         #     'italy - serie c - group a',
@@ -518,12 +551,15 @@ class MatchOdds:
         
         
         NOT_ACCEPTABLE_LEAGUES = [
+            'league two',
+            'la liga',
             'spain - la liga 2',
             'portugal - primeira liga',
             'portugal - liga portugal',
             'portugal - liga portugal 2',
             'portugal - segunda liga',
-            'italy - serie a',
+            'france - ligue 2',
+            # 'italy - serie a',
             'italy - serie c - group a',
             'scotland - championship',
             'france - national',
@@ -539,12 +575,21 @@ class MatchOdds:
             'south korea - k3 league',
             'south africa - premier division',
             'south africa - first division',
-            'japan - j1 league',
+            # 'japan - j1 league',
             'argentina - liga profesional',
             'south korea - k league 2',
+            'usa - mls',
+            'japan - j2 league',
             'japan - j3 league',
             'zambia - super league',
             'italy - serie d - group b'
+            'italy - serie c - group a',
+            #'italy - serie c - group c',
+            'italy - serie c - group d',
+            'italy - serie d - group a',
+            'italy - serie d - group b',
+            'italy - serie d - group c',
+            'italy - serie d - group d',
              
         ]
         #     'italy - serie c - group a',
@@ -563,7 +608,7 @@ class MatchOdds:
         #     'france - nacional',
         #     'scotland - championship',
         #     'japan - j1 league',
-        #     'japan - j2 league',
+        #     
         #     'argentina - primera nacional',
         #     'south korea - k3 league',
         #     'brazil - serie a',
@@ -590,9 +635,9 @@ class MatchOdds:
                 # if (get_name(self.site) in SPECIAL_LEAGUES):
                 #     return "The [ROBOT] Recommend enter in [   <<TEST>>   ]"
 
-                return "The [ROBOT] Recommend enter in [    <<MATRIZ-FULL-EXPECTED OVER>>     ]"
+                return "The [ROBOT] Recommend enter in [    <<EXPECTED OVER>>     ]"
             else:
-                print("League NOt Allowed (MATRIZ-FULL)", get_name(self.site))
+                print("League NOt Allowed (MATRIZ-FULL-EXPECTED OVER)", get_name(self.site))
 
         return False
     
@@ -600,12 +645,25 @@ class MatchOdds:
     
     @property
     def matriz_magico(self):
+        test = [
+            'italy - serie b'
+            
+        ]
        
         NOT_ACCEPTABLE_LEAGUES = [
+            'italy - serie a',
+            'brazil - serie a',
+            'brazil - serie b',
+            'argentina - primera c',
+            'argentina - primera c - apertura',
+            'argentina - primera c - clausura',
+            'south africa - premier division',
+            'south africa - first division',
             'brazil - parabaino',
             'brazil - paulista a1',
             'zambia - super league',
             'spain - la liga 2',
+            'italy - serie c - group b',
             'italy - serie c - group a',
             'italy - serie c - group c',
             'italy - serie c - group d',
@@ -613,21 +671,34 @@ class MatchOdds:
             'italy - serie d - group b',
             'italy - serie d - group c',
             'italy - serie d - group d',
+            'portugal - primeira liga', # e a mesma coisa que liga portugal
+            'portugal - liga portugal',
             'portugal - liga portugal 2',
             'zambia - super league',
+            'argentina - liga profesional',
             'league one',
             'france - national',
             'france - nacional',
+            'france - ligue 2',
             'scotland - championship',
             'japan - j1 league',
             'japan - j2 league',
+            'japan - j3 league',
             'argentina - primera nacional',
             'brazil - serie b',
             'brazil - serie d',
             'usa - mls',
             'usa - usl championship',
             'usa - usl league one',
-            'usa - nisa'
+            'usa - nisa',
+            'south korea - k league 1',
+            'south korea - k league 2',
+            'south korea - k3 league',
+            'argentina - primera c ',
+            'argentina - primera c - Apertura',
+            'argentina - primera c - Clausura',
+            'south Africa - premier division',
+            'south africa - first division'
             
         ]
        
@@ -647,6 +718,8 @@ class MatchOdds:
             if self.is_league_allowed:
 
                 if get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
+                    if get_name(self.site) in test:
+                        return 'test [MATRIZ-MAGICO]'
     
 
                     return "The [ROBOT] Recommend enter in <<[MATRIZ-MAGICO] in this match"

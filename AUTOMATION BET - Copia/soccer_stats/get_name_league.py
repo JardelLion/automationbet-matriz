@@ -11,10 +11,16 @@ def get_name(site):
     }).find("font")
 
 
-
+    name_league_final_altenative = site.find('div', attrs={
+        'id': 'content'
+    }).find_all('div')[1].find('font') #caso nao encotre a liga ira mandar este valor
+    
+    
+    
 
     name_league_second_option = site.find('div', attrs={
         'id': 'content'}).find_all('div')
+    
 
     name_league_second_option_value = ''
 
@@ -56,6 +62,7 @@ def get_name(site):
     if value.lower().strip() in altenative_list:
 
         check_altenative = altenative_name_league[altenative_one].find('font')
+       
         
 
         if check_altenative is None:
@@ -83,6 +90,10 @@ def get_name(site):
     if value.lower().strip() not in altenative_list:
         if len(value.lower().strip()) <= 1:
             value = name_league_second_option_value
+            
+    else:
+        
+        value = str(name_league_final_altenative.text).lower().strip()
 
             
     return value.lower().strip()
