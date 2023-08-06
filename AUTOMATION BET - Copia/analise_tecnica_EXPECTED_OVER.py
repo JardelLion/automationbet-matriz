@@ -119,12 +119,18 @@ def analise_tecnica_expected_over(index):
        
         'PREMIER LEAGUE',
         'BUNDESLIGA',
+        'JAPAN - J1 LEAGUE'
        
     ]
     
     is_analise_under25BLUE = (
         under_1_5[index] < 3 and
-        under_1_5[index] != 0
+        under_1_5[index] != 0 and
+        
+        league[index] not in [
+            'JAPAN - J1 LEAGUE',
+            'BUNDESLIGA'
+        ]
         
     
         # league[index] not in ALLOWED_OVER_LEAGUE
