@@ -551,6 +551,7 @@ class MatchOdds:
         
         
         NOT_ACCEPTABLE_LEAGUES = [
+            'brazil - serie c',
             'league two',
             'la liga',
             'spain - la liga 2',
@@ -575,7 +576,7 @@ class MatchOdds:
             'south korea - k3 league',
             'south africa - premier division',
             'south africa - first division',
-            # 'japan - j1 league',
+            'japan - j1 league',
             'argentina - liga profesional',
             'south korea - k league 2',
             'usa - mls',

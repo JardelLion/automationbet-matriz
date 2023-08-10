@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2023/EXPECTED-OVER-2023.xlsx')
-sheet = workbook[get_sheet_name('agosto')]
+workbook = openpyxl.load_workbook('tecnica_analise/2022/EXPECTED-OVER-2022.xlsx')
+sheet = workbook[get_sheet_name('abril')]
 
-question_day =  '6/8/2023' #data 10/5/2010
+question_day =  '10/4/2022' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -68,6 +68,7 @@ def analise_tecnica_expected_over(index):
     """
     
     NOT_ACCEPTABLE_LEAGUES = [
+        'brazil - serie c',
         'league two',
         'la liga',
         'spain - la liga 2',
@@ -91,11 +92,11 @@ def analise_tecnica_expected_over(index):
         'argentina - primera c - clausura',
         # 'brazil - serie a',
         'brazil - serie b',
-        # 'brazil - serie d',
+        'brazil - serie d',
         'south korea - k3 league',
         'south africa - premier division',
         'south africa - first division',
-        # 'japan - j1 league',
+        'japan - j1 league',
         'argentina - liga profesional',
         'south korea - k league 2',
         'japan - j3 league',
@@ -119,7 +120,7 @@ def analise_tecnica_expected_over(index):
        
         'PREMIER LEAGUE',
         'BUNDESLIGA',
-        'JAPAN - J1 LEAGUE'
+        #'JAPAN - J1 LEAGUE'
        
     ]
     
@@ -128,7 +129,6 @@ def analise_tecnica_expected_over(index):
         under_1_5[index] != 0 and
         
         league[index] not in [
-            'JAPAN - J1 LEAGUE',
             'BUNDESLIGA'
         ]
         
@@ -171,17 +171,48 @@ def analise_tecnica_expected_over(index):
             
     
     
-
+    # ENTER IN UNDER 2,5 NO BLUE
     if is_analise_under25BLUE and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
-        
         
         return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (BLUE) ]"
     
-    if is_analise_under25PURPLE and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
+    
+    
+    
+    
+    
+    
+    # ENTER IN UNDER 2,5 NO PURPLE
+    if is_analise_under25PURPLE and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES: 
+        
+        # if league[index].lower() in ['italy - serie a']:
+                
+        #     if under_1_5[index] <= 3.50:
+        #         return "The Robot Recomend Enter in << UNDER 2,5 >>  [EXPECTED OVER (PURPLE) ]"
+        #     else:
+        #         return None
+            
+            
+        
+        if league[index].lower() in ['league one']:
+            if under_1_5[index] < 3.40:
+                
+                return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
+            
+            else:
+                return None    
         
         return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
     
     
+    
+    
+    
+    
+    
+    
+    
+    # enter in OVER 2,5
     if is_analise_over25GRAY and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         if league[index].lower() in [
             'italy - serie a',
@@ -191,6 +222,24 @@ def analise_tecnica_expected_over(index):
    
         ] and under_1_5[index] == 404: 
             
+            return None
+        
+        # if league[index].lower() in ['italy - serie a']:
+            
+        #     if under_1_5[index] >= 3.95:
+        #         return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
+        #     else:
+        #         return None
+        
+        if league[index].lower() in ['league one']:
+            if under_1_5[index] >= 3.90:
+                
+                return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
+            else:
+                return None
+            
+            
+        if league[index].lower() in ['bundesliga'] and over_2_5[index] == 404:
             return None
         
         return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
