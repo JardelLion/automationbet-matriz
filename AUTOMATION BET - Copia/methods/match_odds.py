@@ -730,7 +730,90 @@ class MatchOdds:
         return False
     
         
+    @property
+    def bothTimeToScore(self):
+        home = (
+           
+            self.SCORING_STATIST.get_homeScoredPerMatch >= 1 and
+            self.SCORING_STATIST.get_homeConcededPerMatch >= 1 and
+            self.PERFORMANCE.get_home_change_conceded >= 45 and
+            self.PERFORMANCE.get_home_change_score > 40 and
+            self.TABLE_RESULT_PASSED.get_home_probability_to_draw() >= 10   
+        )
+        
+        away = (
+            self.SCORING_STATIST.get_awayScoredPerMatch >= 1 and
+            self.SCORING_STATIST.get_awayConcededPerMatch >= 1 and
+            self.PERFORMANCE.get_away_change_conceded >= 45 and
+            self.PERFORMANCE.get_away_change_score > 40 and
+            self.TABLE_RESULT_PASSED.get_away_probability_to_draw() >= 10
+            
+        )
+        
+        if home and away:
+            if (self.TABLE_RESULT_PASSED.get_home_probability_to_draw() > 15 or
+                self.TABLE_RESULT_PASSED.get_away_probability_to_draw() > 15 ):
+                return 'The ROBOT Recomendo enter in[BOTH TIIME TO SCORE [NO] ]'
+            
+            return "The ROBOT Recomend [BOTH TIME TO SCORE]"
+    
+    @property
+    def asian(self):
+        #home jogando em casa e fora forte
+        super_to_homeStrong = (
+           
+            self.SCORING_STATIST.get_homeScoredPerMatch >= 2 and
+            self.SCORING_STATIST.get_homeConcededPerMatch <= 0.5 and
+            self.PERFORMANCE.get_home_change_score > 65 and
+            self.PERFORMANCE.get_home_change_make_points > 50
+             
+        )
+        
+        super_to_awayStrong = (
+            self.SCORING_STATIST.get_awayScoredPerMatch >= 2 and
+            self.SCORING_STATIST.get_awayConcededPerMatch <= 0.5 and
+            self.PERFORMANCE.get_away_change_score > 65 and
+            self.PERFORMANCE.get_away_change_make_points > 50
+            
+        )
+        
+        
+        weak_to_home = (
+           
+            self.SCORING_STATIST.get_homeScoredPerMatch <= 1 and
+            self.SCORING_STATIST.get_homeConcededPerMatch >= 2 and
+            self.PERFORMANCE.get_home_change_conceded >= 50 and
+            self.PERFORMANCE.get_home_change_make_points < 40
+             
+        )
+        
+        weak_to_away = (
+            self.SCORING_STATIST.get_awayScoredPerMatch <= 1 and
+            self.SCORING_STATIST.get_awayConcededPerMatch >= 2 and
+            self.PERFORMANCE.get_away_change_conceded >= 50 and
+            self.PERFORMANCE.get_away_change_make_points < 40
+            
+        )
+        
+        if super_to_homeStrong and weak_to_away:
+            return "The ROBOT Recomend enter in [ANSIAN  homeSuper]"
+        
+        if super_to_awayStrong and weak_to_home:
+            return "The ROBOT Recomend enter in [ANSIAN awaySuper]"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
 
+            
+        
     @property
     def verify_media_score_change(self):
         
