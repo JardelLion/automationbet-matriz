@@ -17,13 +17,12 @@ from soccer_stats.table_result_passed import TableResultPassed
 
 
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\8-AGOSTO\\14').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\8-AGOSTO\\20').glob("**\*.html")
 
 paths = []
 for path in recent_paths:
     paths.append(path)
     
-
 
 
 print("staring")
@@ -52,30 +51,30 @@ for pos, file in enumerate(paths):
         
     
     if match.matriz_magico:
-        print(f'                   {game}: league: {league}')
-        print('==>> ', match.matriz_magico,  ' ', match.get_performance(), match.get_dateOfGame())
-        TableResultPassed(site).show_statics()
+         print(f'                   {game}: league: {league}')
+         print('==>> ', match.matriz_magico,  ' ', match.get_performance(), match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
 
     
 
     if match.matriz_primo:
-        print(f'                   {game}: league: {league}')
-        print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
-        TableResultPassed(site).show_statics()
+         print(f'                   {game}: league: {league}')
+         print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
         
     
     if match.matriz_full:
-        print(f'                   {game}: league: {league}')
+         print(f'                   {game}: league: {league}')
 
-        print('==>> ', match.matriz_full,  ' ', match.get_performance())#, match.get_dateOfGame())
-        TableResultPassed(site).show_statics()
+         print('==>> ', match.matriz_full,  ' ', match.get_performance())#, match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
         
-     
+
     if match.matriz_full_expected_over:
-            print(f'                   {game}: league: {league}')
+         print(f'                   {game}: league: {league}')
        
-            print('==>> ', match.matriz_full_expected_over,  ' ', match.get_performance())#, match.get_dateOfGame())
-            TableResultPassed(site).show_statics()
+         print('==>> ', match.matriz_full_expected_over,  ' ', match.get_performance())#, match.get_dateOfGame())
+         TableResultPassed(site).show_statics()
            
      
     if match.bothTimeToScore:

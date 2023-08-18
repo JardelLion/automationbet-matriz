@@ -732,6 +732,53 @@ class MatchOdds:
         
     @property
     def bothTimeToScore(self):
+        NOT_ACCEPTABLE_LEAGUES = [
+            #'italy - serie a',
+            #'brazil - serie a',
+            #'brazil - serie b',
+            'argentina - primera c',
+            'argentina - primera c - apertura',
+            'argentina - primera c - clausura',
+            'south africa - premier division',
+            'south africa - first division',
+            #'brazil - parabaino',
+            #'brazil - paulista a1',
+            #'zambia - super league',
+            'spain - la liga 2',
+            'italy - serie c - group b',
+            'italy - serie c - group a',
+            'italy - serie c - group c',
+            'italy - serie c - group d',
+            'italy - serie d - group a',
+            'italy - serie d - group b',
+            'italy - serie d - group c',
+            'italy - serie d - group d',
+            #'portugal - primeira liga', # e a mesma coisa que liga portugal
+            #'portugal - liga portugal',
+            #'portugal - liga portugal 2',
+            'zambia - super league',
+            # 'argentina - liga profesional',
+            # 'league one',
+            # 'france - national',
+            # 'france - nacional',
+            # 'france - ligue 2',
+            # 'scotland - championship',
+             'japan - j1 league',
+            # 'japan - j2 league',
+            'japan - j3 league',
+            #'argentina - primera nacional',
+            #'brazil - serie b',
+            #'brazil - serie d',
+            #'usa - mls',
+            #'usa - usl championship',
+            'usa - usl league one',
+            'usa - nisa',
+            'south korea - k league 1',
+            'south korea - k league 2',
+            'south korea - k3 league',
+           
+            
+        ]
         home = (
            
             self.SCORING_STATIST.get_homeScoredPerMatch >= 1 and
@@ -751,11 +798,15 @@ class MatchOdds:
         )
         
         if home and away:
-            if (self.TABLE_RESULT_PASSED.get_home_probability_to_draw() > 15 or
-                self.TABLE_RESULT_PASSED.get_away_probability_to_draw() > 15 ):
-                return 'The ROBOT Recomendo enter in[BOTH TIIME TO SCORE [NO] ]'
-            
-            return "The ROBOT Recomend [BOTH TIME TO SCORE]"
+             if self.is_league_allowed:
+    
+                if get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
+                    
+                    if (self.TABLE_RESULT_PASSED.get_home_probability_to_draw() > 15 or
+                        self.TABLE_RESULT_PASSED.get_away_probability_to_draw() > 15 ):
+                        return 'The ROBOT Recomendo enter in[BOTH TIIME TO SCORE [NO] ]'
+                    
+                    return "The ROBOT Recomend [BOTH TIME TO SCORE]"
     
     @property
     def asian(self):
