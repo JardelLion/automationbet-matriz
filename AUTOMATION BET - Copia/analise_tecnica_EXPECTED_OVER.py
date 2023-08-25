@@ -9,7 +9,7 @@ def get_sheet_name(sheet_name):
 workbook = openpyxl.load_workbook('tecnica_analise/2023/EXPECTED-OVER-2023.xlsx')
 sheet = workbook[get_sheet_name('agosto')]
 
-question_day =  '14/8/2023' #data 10/5/2010
+question_day =  '20/8/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 

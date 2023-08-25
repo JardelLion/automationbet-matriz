@@ -9,7 +9,7 @@ def get_sheet_name(sheet_name):
 workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
 sheet = workbook[get_sheet_name('agosto')]
 
-question_day =  '19/8/2023' #data 10/5/2010
+question_day =  '26/8/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -25,40 +25,44 @@ btsno = []
 
 analise_fundamentalista = []
 NOT_ACCEPTABLE_LEAGUES = [
-        #'brazil - serie c',
+        'france - ligue 1',
+        'championship',
+        'bundesliga',
+        'germany - 2. bundesliga',
+        'brazil - serie c',
         #'league two',
         #'la liga',
         'spain - la liga 2',
-        #'portugal - primeira liga',
-        #'portugal - liga portugal',
-        #'portugal - liga portugal 2',
-        #'portugal - segunda liga',
-        # 'italy - serie a',
+        'portugal - primeira liga',
+        'portugal - liga portugal',
+        'portugal - liga portugal 2',
+        'portugal - segunda liga',
+        'italy - serie a',
         'italy - serie c - group a',
         #'premier league',
-        #'scotland - championship',
-        #'france - national',
-        #'france - nacional',
-        #'france - ligue 2',
+        'scotland - championship',
+        'france - national',
+        'france - nacional',
+        'france - ligue 2',
         'italy - serie c - group b',
-        #'england - national league',
+        'england - national league',
         #'argentina - primera nacional',
         'south korea - k league 1',
         'argentina - primera c',
         'argentina - primera c - apertura',
         'argentina - primera c - clausura',
         # 'brazil - serie a',
-        #'brazil - serie b',
-        #'brazil - serie d',
+        'brazil - serie b',
+        'brazil - serie d',
         'south korea - k3 league',
         'south africa - premier division',
         'south africa - first division',
         'japan - j1 league',
-        #'argentina - liga profesional',
+        'argentina - liga profesional',
         'south korea - k league 2',
-        'japan - j3 league',
+        #'japan - j3 league',
         #'japan - j2 league',
-        #'usa - mls',
+        'usa - mls',
         
         'zambia - super league',
         'italy - serie c - group a',
@@ -116,8 +120,8 @@ def analise_tecnica_bts(index):
     is_analise_bts_NO = (
         btsyes[index] >= 1.79 and
         btsyes[index] != 0 and
-        btsyes[index] != 404 and 
-        btsno[index] > 1.67
+        btsyes[index] != 404 
+        #btsno[index] > 1.67
        
        
              
@@ -127,9 +131,15 @@ def analise_tecnica_bts(index):
         btsyes[index] <= 1.70 and
         btsyes[index] != 0 and 
         btsyes[index] != 404 and
+        
         league[index].upper().strip() not in [
-            'USA - USL CHAMPIONSHIP'
-        ]
+            'PREMIER LEAGUE',
+            'USA - MLS',
+            'PORTUGAL - SEGUNDA LIGA'
+            
+            
+        ] 
+        
              
     )
     
@@ -143,10 +153,11 @@ def analise_tecnica_bts(index):
     
     if is_analise_bts_YES and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
         
+        
         return "The Robot Recomend Enter in << BTS YES >>"
     
 def analise_tecnica_bts_(index): 
-    return "The Robot Recomend Enter in << @BTS YES >>"
+    return "The Robot Recomend Enter in << @BTS YES test >>"
 
 
 def analise_tecnica_super(index):
