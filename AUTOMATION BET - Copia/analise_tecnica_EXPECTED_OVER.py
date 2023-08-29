@@ -9,7 +9,7 @@ def get_sheet_name(sheet_name):
 workbook = openpyxl.load_workbook('tecnica_analise/2023/EXPECTED-OVER-2023.xlsx')
 sheet = workbook[get_sheet_name('agosto')]
 
-question_day =  '20/8/2023' #data 10/5/2010
+question_day =  '27/8/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -274,6 +274,7 @@ for index in range(1, len(analise_fundamentalista)):
             
     else:
         choosed_data = f'{data[index].day}/{data[index].month}/{data[index].year}'.strip()
+        
         if str(analise_fundamentalista[index]).lower() == 'ex-over':
             #do the analise tecnica baseada nas regras do magico
             if choosed_data == question_day:

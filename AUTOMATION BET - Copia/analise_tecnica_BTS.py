@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
-sheet = workbook[get_sheet_name('agosto')]
+workbook = openpyxl.load_workbook('tecnica_analise/2022/bts-asian2022.xlsx')
+sheet = workbook[get_sheet_name('setembro')]
 
-question_day =  '26/8/2023' #data 10/5/2010
+question_day =  '28/9/2022' #data 01/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -23,6 +23,12 @@ league = []
 btsyes = []
 btsno = []
 
+
+under_1_5 = []
+over_2_5 = []
+under_2_5 = []
+
+
 analise_fundamentalista = []
 NOT_ACCEPTABLE_LEAGUES = [
         'france - ligue 1',
@@ -30,7 +36,7 @@ NOT_ACCEPTABLE_LEAGUES = [
         'bundesliga',
         'germany - 2. bundesliga',
         'brazil - serie c',
-        #'league two',
+        'league two',
         #'la liga',
         'spain - la liga 2',
         'portugal - primeira liga',
@@ -63,7 +69,6 @@ NOT_ACCEPTABLE_LEAGUES = [
         #'japan - j3 league',
         #'japan - j2 league',
         'usa - mls',
-        
         'zambia - super league',
         'italy - serie c - group a',
         'italy - serie c - group c',
@@ -91,18 +96,21 @@ for number_row in range(1, 200):
         # away.append(sheet['e' + str(number_row)].value)
     
     
-        analise_fundamentalista.append(sheet['i' + str(number_row)].value)
+        analise_fundamentalista.append(sheet['m' + str(number_row)].value)
         
-        btsyes.append(sheet['j' + str(number_row)].value)
-        btsno.append(sheet['k' + str(number_row)].value)
+        btsyes.append(sheet['n' + str(number_row)].value)
+        btsno.append(sheet['o' + str(number_row)].value)
+        
+        under_1_5.append(sheet['f' + str(number_row)].value)
+        over_2_5.append(sheet['g' + str(number_row)].value)
+        under_2_5.append(sheet['h' + str(number_row)].value)
     
         
         league.append(
-            str(sheet['m' + str(number_row)].value).upper().strip()
+            str(sheet['q' + str(number_row)].value).upper().strip()
             )
         
        
-
      
 def analise_tecnica_bts(index):
     """_summary_
@@ -135,7 +143,10 @@ def analise_tecnica_bts(index):
         league[index].upper().strip() not in [
             'PREMIER LEAGUE',
             'USA - MLS',
-            'PORTUGAL - SEGUNDA LIGA'
+            'PORTUGAL - SEGUNDA LIGA',
+            'LEAGUE ONE',
+            'ITALY - SERIE B',
+            'JAPAN - J3 LEAGUE'
             
             
         ] 
@@ -143,18 +154,54 @@ def analise_tecnica_bts(index):
              
     )
     
+    is_analise_over25 = (
+        under_1_5[index] >= 3.7 and
+        under_1_5[index] != 404 and
+        under_1_5[index] != 0
+    )
+    is_analise_over15 = (
+        under_1_5[index] > 3 and
+        under_1_5[index] < 3.7 and
+         under_1_5[index] != 404 and
+        under_1_5[index] != 0
+    )
     
+    
+    is_analise_under2 = (
+        under_1_5[index] < 3 and
+         under_1_5[index] != 404 and
+        under_1_5[index] != 0
+    )
+    
+    market_accept = []
  
-
+    if is_analise_over15:
+        market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
+     
+    if is_analise_over25:
+        market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
+        
+    if is_analise_under2:
+        market_accept.append("The Robot Recomend Enter in << UNDER 2 NO >>")
+        
     
     if is_analise_bts_NO and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
         
-        return "The Robot Recomend Enter in << BTS NO >>"
+        market_accept.append("The Robot Recomend Enter in << BTS NO >>")
     
     if is_analise_bts_YES and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
         
         
-        return "The Robot Recomend Enter in << BTS YES >>"
+        market_accept.append("The Robot Recomend Enter in << BTS YES >>")
+        
+    if len(market_accept) != 0:
+        
+        return market_accept
+    
+    return None
+    
+    
+    
     
 def analise_tecnica_bts_(index): 
     return "The Robot Recomend Enter in << @BTS YES test >>"
@@ -191,7 +238,7 @@ for index in range(1, len(analise_fundamentalista)):
             print()
         
             
-        elif str(analise_fundamentalista[index]).upper() == 'BTS':
+        elif str(analise_fundamentalista[index]).upper().strip() == 'BTS':
             # do the analise tecnica baseada nas regras do bts
             print(f'{data[index].day}/{data[index].month}/{data[index].year}', game[index] + " || ", analise_tecnica_bts_(index))
             print()
@@ -205,23 +252,29 @@ for index in range(1, len(analise_fundamentalista)):
             
 
         else:
+            
             print('talvez haja algo erro verifica a coluna de analise fundamentalista')
             
     else:
         choosed_data = f'{data[index].day}/{data[index].month}/{data[index].year}'.strip()
         
-        if str(analise_fundamentalista[index]).upper() == 'BTS NO':
+        
+        if str(analise_fundamentalista[index]).upper().strip() == 'BTS NO':
+           
             #do the analise tecnica baseada nas regras do bts no
+            
             if choosed_data == question_day:
+              
                 if analise_tecnica_bts(index) == None:
+                    
                     pass
                 else:
-                    
+                
                     print(choosed_data, game[index] + " || ", analise_tecnica_bts(index))
                     print()
         
                   
-        elif str(analise_fundamentalista[index]).upper() == 'BTS':
+        elif str(analise_fundamentalista[index]).upper().strip() == 'BTS':
             # do the analise tecnica baseada nas regras do bts
             if choosed_data == question_day:
                 if analise_tecnica_bts_(index) == None:
