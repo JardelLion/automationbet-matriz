@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2022/bts-asian2022.xlsx')
+workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
 sheet = workbook[get_sheet_name('setembro')]
 
-question_day =  '28/9/2022' #data 01/5/2010
+question_day =  '3/9/2023' #data 01/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -28,8 +28,13 @@ under_1_5 = []
 over_2_5 = []
 under_2_5 = []
 
+over_1_5 = []
+over_2 = []
+under_2 = []
 
 analise_fundamentalista = []
+
+
 NOT_ACCEPTABLE_LEAGUES = [
         'france - ligue 1',
         'championship',
@@ -69,6 +74,7 @@ NOT_ACCEPTABLE_LEAGUES = [
         #'japan - j3 league',
         #'japan - j2 league',
         'usa - mls',
+        'usa - usl championship',
         'zambia - super league',
         'italy - serie c - group a',
         'italy - serie c - group c',
@@ -78,6 +84,61 @@ NOT_ACCEPTABLE_LEAGUES = [
         'italy - serie d - group c',
         'italy - serie d - group d',
         'usa - usl league one',
+        'usa - nisa'
+             
+    ]
+
+
+
+NOT_ACCEPTABLE_LEAGUES_2 = [
+        #'france - ligue 1',
+        'championship',
+        'bundesliga',
+        'germany - 2. bundesliga',
+        'brazil - serie c',
+        #'league two',
+        'la liga',
+        'spain - la liga 2',
+        'portugal - primeira liga',
+        'portugal - liga portugal',
+        'portugal - liga portugal 2',
+        'portugal - segunda liga',
+        #'italy - serie a',
+        'italy - serie c - group a',
+        'premier league',
+        #'scotland - championship',
+        #'france - national',
+        #'france - nacional',
+        'france - ligue 2',
+        'italy - serie c - group b',
+        'england - national league',
+        'argentina - primera nacional',
+        'south korea - k league 1',
+        #'argentina - primera c',
+        #'argentina - primera c - apertura',
+        #'argentina - primera c - clausura',
+        # 'brazil - serie a',
+        'brazil - serie b',
+        #'brazil - serie d',
+        'south korea - k3 league',
+        'south africa - premier division',
+        'south africa - first division',
+        #'japan - j1 league',
+        #'argentina - liga profesional',
+        #'south korea - k league 2',
+        'japan - j3 league',
+        #'japan - j2 league',
+        'usa - mls',
+        'usa - usl championship',
+        'zambia - super league',
+        'italy - serie c - group a',
+        'italy - serie c - group c',
+        'italy - serie c - group d',
+        'italy - serie d - group a',
+        'italy - serie d - group b',
+        'italy - serie d - group c',
+        'italy - serie d - group d',
+        #'usa - usl league one',
         'usa - nisa'
              
     ]
@@ -104,6 +165,15 @@ for number_row in range(1, 200):
         under_1_5.append(sheet['f' + str(number_row)].value)
         over_2_5.append(sheet['g' + str(number_row)].value)
         under_2_5.append(sheet['h' + str(number_row)].value)
+        
+        
+        
+        over_1_5.append(sheet['i' + str(number_row)].value)
+        over_2.append(sheet['k' + str(number_row)].value)
+        under_2.append(sheet['l' + str(number_row)].value)
+        
+        
+        
     
         
         league.append(
@@ -170,29 +240,55 @@ def analise_tecnica_bts(index):
     is_analise_under2 = (
         under_1_5[index] < 3 and
          under_1_5[index] != 404 and
-        under_1_5[index] != 0
+        under_1_5[index] != 0 and 
+        
+        league[index] not in [
+            'JAPAN - J2 LEAGUE',
+            'LEAGUE TWO'
+
+        ]
     )
     
     market_accept = []
  
-    if is_analise_over15:
-        market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
+    if is_analise_over15 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
+        if over_1_5[index] >= 1.40:
+            market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
      
-    if is_analise_over25:
-        market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
+    if is_analise_over25 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
         
-    if is_analise_under2:
-        market_accept.append("The Robot Recomend Enter in << UNDER 2 NO >>")
+        
+        if league[index] in ['JAPAN - J2 LEAGUE']:
+            if over_2[index] >= 1.40:
+            
+                market_accept.append("The Robot Recomend Enter in << OVER 2  NO >>")
+            
+        elif league[index] in ['LEAGUE ONE']:
+            if over_1_5[index] >= 1.40:
+            
+                market_accept.append("The Robot Recomend Enter in << OVER 1,5  NO >>")
+            
+        
+        else:
+            if over_2_5[index] >= 1.40:
+            
+                market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
+      
+        
+    if is_analise_under2 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
+        if under_2[index] >= 1.40:
+            
+            market_accept.append("The Robot Recomend Enter in << UNDER 2 NO >>")
         
     
     if is_analise_bts_NO and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
+        if btsno[index] >= 1.40:
         
-        market_accept.append("The Robot Recomend Enter in << BTS NO >>")
+            market_accept.append("The Robot Recomend Enter in << BTS NO >>")
     
     if is_analise_bts_YES and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
-        
-        
-        market_accept.append("The Robot Recomend Enter in << BTS YES >>")
+        if btsno[index] >= 1.40:
+            market_accept.append("The Robot Recomend Enter in << BTS YES >>")
         
     if len(market_accept) != 0:
         

@@ -92,7 +92,9 @@ def analise_tecnica_magico(index):
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-MAGICO]"
     
     if is_analise_over:
-        return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-MAGICO]"
+        
+        if over_2_5_pinnacle >= 1.80:
+            return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-MAGICO]"
     else:
         return "The Robot Recomend [NOT INVEST IN THIS GAME] [MATRIZ-MAGICO]"
     
@@ -141,7 +143,9 @@ def analise_tecnica_primo(index):
         return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-PRIMO]"
     
     if is_analise_over:
-        return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-PRIMO]"
+        if over_2_5_pinnacle[index] >= 1.80:
+            
+            return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-PRIMO]"
     
     # if is_analise_under_2:
     #     return "The Robot Recomend Enter in << UNDER 2,5 >> [MATRIZ-PRIMO]"

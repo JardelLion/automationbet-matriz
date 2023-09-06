@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2023/EXPECTED-OVER-2023.xlsx')
-sheet = workbook[get_sheet_name('agosto')]
+sheet = workbook[get_sheet_name('setembro')]
 
-question_day =  '27/8/2023' #data 10/5/2010
+question_day =  '2/9/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -24,6 +24,7 @@ league = []
 under_1_5 = []
 over_2_5 = []
 under_2_5 = []
+over225 = []
 
 analise_fundamentalista = []
 
@@ -45,6 +46,8 @@ for number_row in range(1, 100):
         under_1_5.append(sheet['f' + str(number_row)].value)
         over_2_5.append(sheet['g' + str(number_row)].value)
         under_2_5.append(sheet['h' + str(number_row)].value)
+        
+        over225.append(sheet['i' + str(number_row)].value)
 
         analise_fundamentalista.append(sheet['j' + str(number_row)].value)
         
@@ -102,7 +105,7 @@ def analise_tecnica_expected_over(index):
         'japan - j3 league',
         'japan - j2 league',
         'usa - mls',
-        
+        'usa - usl championship',
         'zambia - super league',
         'italy - serie c - group a',
         # 'italy - serie c - group c',
@@ -166,7 +169,9 @@ def analise_tecnica_expected_over(index):
             )
         
         if brazil_condition:
-            return "The Robot Recomend Enter in << OVER 2,25 >> [EXPECTED OVER (YELLOW)]"
+            
+            if over225[index] >= 1.60:
+                return "The Robot Recomend Enter in << OVER 2,25 >> [EXPECTED OVER (YELLOW)]"
             
             
     
@@ -174,7 +179,11 @@ def analise_tecnica_expected_over(index):
     # ENTER IN UNDER 2,5 NO BLUE
     if is_analise_under25BLUE and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
         
-        return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (BLUE) ]"
+        if under_2_5[index] >= 1.60:
+        
+            return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (BLUE) ]"
+        
+       
     
     
     
@@ -192,17 +201,23 @@ def analise_tecnica_expected_over(index):
         #     else:
         #         return None
             
-            
+        
         
         if league[index].lower() in ['league one']:
             if under_1_5[index] < 3.40:
                 
-                return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
+                if under_2_5[index] >= 1.60:
+                
+                    return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
             
             else:
-                return None    
-        
-        return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
+                return None  
+              
+        if under_2_5[index] >= 1.60:
+            
+            return "The Robot Recomend Enter in << UNDER 2,5 >> [EXPECTED OVER (PURPLE) ]"
+    
+        return None
     
     
     
@@ -214,6 +229,7 @@ def analise_tecnica_expected_over(index):
     
     # enter in OVER 2,5
     if is_analise_over25GRAY and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
+        
         if league[index].lower() in [
             'italy - serie a',
             'premier league',
@@ -233,8 +249,9 @@ def analise_tecnica_expected_over(index):
         
         if league[index].lower() in ['league one']:
             if under_1_5[index] >= 3.90:
+                if over_2_5[index] >= 1.60:
                 
-                return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
+                    return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
             else:
                 return None
             
@@ -242,7 +259,11 @@ def analise_tecnica_expected_over(index):
         if league[index].lower() in ['bundesliga'] and over_2_5[index] == 404:
             return None
         
-        return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
+        if over_2_5[index] >= 1.60:
+        
+            return "The Robot Recomend Enter in << OVER 2,5 >>  [EXPECTED OVER (GRAY) ]"
+        
+        else: return None
 
         
     

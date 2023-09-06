@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
-sheet = workbook[get_sheet_name('janeiro')]
+sheet = workbook[get_sheet_name('maio')]
 
-question_day =  '1/1/2023' #data 10/5/2010
+question_day =  '19/5/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -25,6 +25,9 @@ under_1_5 = []
 over_2_5 = []
 under_2_5 = []
 expected_goal = []
+over2 = []
+over175 = []
+
 
 analise_fundamentalista = []
 
@@ -46,7 +49,10 @@ for number_row in range(1, 300):
         under_1_5.append(sheet['f' + str(number_row)].value)
         over_2_5.append(sheet['g' + str(number_row)].value)
         under_2_5.append(sheet['h' + str(number_row)].value)
-
+        
+        over2.append(sheet['k' + str(number_row)].value)
+        over175.append(sheet['p' + str(number_row)].value)
+        
         analise_fundamentalista.append(sheet['j' + str(number_row)].value)
         
         league.append(
@@ -106,6 +112,7 @@ def analise_tecnica_matriz_full(index):
         'italy - serie d - group b',
         'italy - serie d - group c',
         'italy - serie d - group d',
+        'usa - usl championship',
         'usa - usl league one',
         'usa - nisa'
              
@@ -186,7 +193,8 @@ def analise_tecnica_matriz_full(index):
     
         
     if is_analise_under and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
-        return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
+    
+            return "The Robot Recomend Enter in << UNDER 2 >> [MATRIZ-FULL]"
     
     
     if is_analise_over and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES:
@@ -203,38 +211,60 @@ def analise_tecnica_matriz_full(index):
             if league[index] == 'LEAGUE ONE':
                 if under_1_5[index] >= 3.70:
                     
-                    return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                    if over_2_5[index] >= 1.80:
+                    
+                        return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                    
+                    else: return None
+                    
+                if over175[index] >= 1.80:
                 
-                return 'The Robot Recomend Enter in << @OVER 1,75 >>  [MATRIZ-FULL]'
+                    return 'The Robot Recomend Enter in << @OVER 1,75 >>  [MATRIZ-FULL]'
+                
+                else: return None
             
             if league[index] == 'JAPAN - J2 LEAGUE':
                 if under_1_5[index] > 3.54:
+                    if over_2_5[index] >= 1.80:
                     
-                    return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                        return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                    
+                    else: return None
+                    
                 else:
                     
                     return None
                 
             if under_1_5[index] >= 3.70:
                 
-                return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                if over_2_5[index] >= 1.80:
+                    
+                    return 'The Robot Recomend Enter in << @@OVER 2,5 >>  [MATRIZ-FULL]'
+                
+                else: return None
                     
                  
+            if over2[index] >= 1.80:
                 
-            return 'The Robot Recomend Enter in << @OVER 2 >>  [MATRIZ-FULL]' 
+                return 'The Robot Recomend Enter in << @OVER 2 >>  [MATRIZ-FULL]' 
+            
+            else: return None
+            
+        if over_2_5[index] >= 1.80:
+            
+            return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
         
-        return "The Robot Recomend Enter in << OVER 2,5 >>  [MATRIZ-FULL]"
+        else: return None
     
     
     if is_analise_over225 and league[index].lower() not in NOT_ACCEPTABLE_LEAGUES :
-        return "The Robot Recomend Enter in << OVER @!2,5 >>  [MATRIZ-FULL]"
         
-         
-    # if IS_ANALISE_OVER_LEAGUE_SPECIAL_brasilA == True:
+        if over_2_5[index] >= 1.80:
+            
+            return "The Robot Recomend Enter in << OVER @!2,5 >>  [MATRIZ-FULL]"
         
-    #      return 'The Robot Recomend Enter in << -- OVER 1,75 -- >>  [MATRIZ-FULL]'
-     
-   
+        else: return None
+
     
     else:
          return None
