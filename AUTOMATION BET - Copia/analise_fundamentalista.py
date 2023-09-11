@@ -17,7 +17,7 @@ from soccer_stats.table_result_passed import TableResultPassed
 
 
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\9-SETEMBRO\\10').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\9-SETEMBRO\\14').glob("**\*.html")
 
 paths = []
 for path in recent_paths:
@@ -84,13 +84,3 @@ for pos, file in enumerate(paths):
         print('==>> ', match.bothTimeToScore)
         TableResultPassed(site).show_statics()
            
-           
-    if match.asian:
-        
-        print(f'                   {game}: league: {league}')
-    
-        print('==>> ', match.asian)
-        TableResultPassed(site).show_statics()
-           
-           
-

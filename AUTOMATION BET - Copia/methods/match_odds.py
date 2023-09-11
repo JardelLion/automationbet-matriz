@@ -492,7 +492,8 @@ class MatchOdds:
             'usa - usl league one',
             'usa - usl championship',
             'brazil - serie a',
-            'brazil - serie b'
+            'brazil - serie b',
+            'usa - mls'
              
         ]
         #     'italy - serie c - group a',

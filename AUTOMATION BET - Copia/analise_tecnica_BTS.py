@@ -9,7 +9,7 @@ def get_sheet_name(sheet_name):
 workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
 sheet = workbook[get_sheet_name('setembro')]
 
-question_day =  '9/9/2023' #data 01/5/2010
+question_day =  '10/9/2023' #data 01/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -71,8 +71,8 @@ NOT_ACCEPTABLE_LEAGUES = [
         'japan - j1 league',
         'argentina - liga profesional',
         'south korea - k league 2',
-        #'japan - j3 league',
-        #'japan - j2 league',
+        'japan - j3 league',
+        'japan - j2 league',
         'usa - mls',
         'usa - usl championship',
         'zambia - super league',
@@ -125,7 +125,7 @@ NOT_ACCEPTABLE_LEAGUES_2 = [
         'south africa - first division',
         #'japan - j1 league',
         #'argentina - liga profesional',
-        #'south korea - k league 2',
+        'south korea - k league 2',
         'japan - j3 league',
         #'japan - j2 league',
         'usa - mls',
