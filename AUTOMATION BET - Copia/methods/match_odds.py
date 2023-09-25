@@ -483,6 +483,7 @@ class MatchOdds:
             'japan - j3 league',
             'zambia - super league',
             'italy - serie c - group a',
+            'italy - serie c - group b',
             'italy - serie c - group c',
             'italy - serie c - group d',
             'italy - serie d - group a',
