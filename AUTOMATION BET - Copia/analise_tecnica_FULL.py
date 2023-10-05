@@ -7,9 +7,9 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
-sheet = workbook[get_sheet_name('setembro')]
+sheet = workbook[get_sheet_name('outubro')]
 
-question_day =  '30/9/2023' #data 10/5/2010
+question_day =  '7/10/2023' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -217,7 +217,7 @@ def analise_tecnica_matriz_full(index):
                     
                     else: return None
                     
-                if over175[index] >= 1.80:
+                if over175[index] >= 1.80 and over175[index] != 404:
                 
                     return 'The Robot Recomend Enter in << @OVER 1,75 >>  [MATRIZ-FULL]'
                 
