@@ -6,10 +6,10 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
-sheet = workbook[get_sheet_name('setembro')]
+workbook = openpyxl.load_workbook('tecnica_analise/2022/bts-asian2022.xlsx')
+sheet = workbook[get_sheet_name('agosto')]
 
-question_day =  '16/9/2023' #data 01/5/2010
+question_day =  'all' #data 01/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
 
 
@@ -252,27 +252,27 @@ def analise_tecnica_bts(index):
     market_accept = []
  
     if is_analise_over15 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
-        if over_1_5[index] >= 1.40:
-            market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
+        if over_1_5[index] >= 1.30:
+             market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
      
     if is_analise_over25 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
         
         
-        if league[index] in ['JAPAN - J2 LEAGUE']:
-            if over_2[index] >= 1.40:
+         if league[index] in ['JAPAN - J2 LEAGUE']:
+             if over_2[index] >= 1.30:
             
-                market_accept.append("The Robot Recomend Enter in << OVER 2  NO >>")
+                 market_accept.append("The Robot Recomend Enter in << OVER 2  NO >>")
             
-        elif league[index] in ['LEAGUE ONE']:
-            if over_1_5[index] >= 1.40:
+         elif league[index] in ['LEAGUE ONE']:
+             if over_1_5[index] >= 1.30:
             
-                market_accept.append("The Robot Recomend Enter in << OVER 1,5  NO >>")
+                 market_accept.append("The Robot Recomend Enter in << OVER 1,5  NO >>")
             
         
-        else:
-            if over_2_5[index] >= 1.40:
+         else:
+             if over_2_5[index] >= 1.30:
             
-                market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
+                 market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
       
         
     if is_analise_under2 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
@@ -286,9 +286,9 @@ def analise_tecnica_bts(index):
         
             market_accept.append("The Robot Recomend Enter in << BTS NO >>")
     
-    if is_analise_bts_YES and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
-        if btsno[index] >= 1.40:
-            market_accept.append("The Robot Recomend Enter in << BTS YES >>")
+    # if is_analise_bts_YES and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
+    #     if btsno[index] >= 1.80:
+    #         market_accept.append("The Robot Recomend Enter in << BTS YES >>")
         
     if len(market_accept) != 0:
         
@@ -313,13 +313,13 @@ def analise_tecnica_super(index):
         analise_fundamentalista[index].strip() == 'awaysuper'
     )
     
-    if is_analise_home_super and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
+    # if is_analise_home_super and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
         
-        return "The Robot Recomend Enter in << homesuper test >>"
+    #     return "The Robot Recomend Enter in << homesuper test >>"
     
-    if is_analise_away_super and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
+    # if is_analise_away_super and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
         
-        return "The Robot Recomend Enter in << awaysuper test >>"
+    #     return "The Robot Recomend Enter in << awaysuper test >>"
         
         
 

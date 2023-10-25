@@ -491,10 +491,11 @@ class MatchOdds:
             'italy - serie d - group c',
             'italy - serie d - group d',
             'usa - usl league one',
-            'usa - usl championship',
+            'usa - usl championship#',
             'brazil - serie a',
             'brazil - serie b',
-            'usa - mls'
+            'usa - mls',
+            'germany - 2. bundesliga'
              
         ]
         #     'italy - serie c - group a',
@@ -554,6 +555,7 @@ class MatchOdds:
         
         
         NOT_ACCEPTABLE_LEAGUES = [
+            'germany - 2. bundesliga',
             'brazil - serie c',
             'league two',
             'la liga',
@@ -565,7 +567,7 @@ class MatchOdds:
             'france - ligue 2',
             # 'italy - serie a',
             'italy - serie c - group a',
-            'scotland - championship',
+            'scotland - championship#',
             'france - national',
             'france - nacional',
             'italy - serie c - group b',
@@ -704,7 +706,8 @@ class MatchOdds:
             'argentina - primera c - Apertura',
             'argentina - primera c - Clausura',
             'south Africa - premier division',
-            'south africa - first division'
+            'south africa - first division',
+            'germany - 2. bundesliga'
             
         ]
        

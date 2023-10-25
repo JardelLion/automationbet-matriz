@@ -1,6 +1,6 @@
 import sys
 from unicodedata import name
-
+from soccer_stats.league_allowed import get_leagues
 sys.path.append('.')
 
 
@@ -35,6 +35,9 @@ def get_name(site):
                 })
 
                 name_league_second_option_value = str(v.text).lower().strip()
+                if name_league_second_option_value in get_leagues():
+                    "caso o nome encontrado faz parte da lista entao iremos retornar o proprio nome"
+                    return name_league_second_option_value
 
         except (UnicodeError, AttributeError):
             pass
