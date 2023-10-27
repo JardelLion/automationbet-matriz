@@ -17,7 +17,7 @@ from soccer_stats.table_result_passed import TableResultPassed
 
 
 #tHE PRINCIPAL AUTOMATION BET
-recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\10-OUTUBRO\\21').glob("**\*.html")
+recent_paths = Path(r'C:\Users\JBXBILLIONS\Documents\BET\2023\\10-OUTUBRO\\28').glob("**\*.html")
 
 paths = []
 for path in recent_paths:
@@ -63,29 +63,29 @@ for pos, file in enumerate(paths):
               TableResultPassed(site).show_statics()
    
     if match.matriz_primo:
-              print(f'                   {game}: league: {league}')
-              print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
-              TableResultPassed(site).show_statics()
+            print(f'                   {game}: league: {league}')
+            print('==>> ', match.matriz_primo,  ' ', match.get_performance(), match.get_dateOfGame())
+            TableResultPassed(site).show_statics()
         
     
     if match.matriz_full:
-             print(f'                   {game}: league: {league}')
+        print(f'                   {game}: league: {league}')
 
-             print('==>> ', match.matriz_full,  ' ', match.get_performance())#, match.get_dateOfGame())
-             TableResultPassed(site).show_statics()
+        print('==>> ', match.matriz_full,  ' ', match.get_performance())#, match.get_dateOfGame())
+        TableResultPassed(site).show_statics()
         
 
     if match.matriz_full_expected_over:
-               print(f'                   {game}: league: {league}')
-       
-               print('==>> ', match.matriz_full_expected_over,  ' ', match.get_performance())#, match.get_dateOfGame())
-               TableResultPassed(site).show_statics()
+        print(f'                   {game}: league: {league}')
+
+        print('==>> ', match.matriz_full_expected_over,  ' ', match.get_performance())#, match.get_dateOfGame())
+        TableResultPassed(site).show_statics()
            
      
-    if match.bothTimeToScore:
+    # if match.bothTimeToScore:
         
-        print(f'                   {game}: league: {league}')
+    #     print(f'                   {game}: league: {league}')
     
-        print('==>> ', match.bothTimeToScore)
-        TableResultPassed(site).show_statics()
+    #     print('==>> ', match.bothTimeToScore)
+    #     TableResultPassed(site).show_statics()
            

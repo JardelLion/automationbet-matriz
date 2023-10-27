@@ -744,6 +744,7 @@ class MatchOdds:
             # 'france - ligue 1',
             'championship',
             'bundesliga',
+            'germany - 2. bundesliga',
             # 'italy - serie a',
             # #'brazil - serie a',
             'brazil - serie b',

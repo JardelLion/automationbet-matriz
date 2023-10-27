@@ -6,8 +6,8 @@ def get_sheet_name(sheet_name):
 
 
 
-workbook = openpyxl.load_workbook('tecnica_analise/2022/bts-asian2022.xlsx')
-sheet = workbook[get_sheet_name('agosto')]
+workbook = openpyxl.load_workbook('tecnica_analise/2023/bts-asian2023.xlsx')
+sheet = workbook[get_sheet_name('setembro')]
 
 question_day =  'all' #data 01/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
@@ -36,19 +36,20 @@ analise_fundamentalista = []
 
 
 NOT_ACCEPTABLE_LEAGUES = [
-        'france - ligue 1',
+        'france - ligue 1#',
         'championship',
         'bundesliga',
         'germany - 2. bundesliga',
-        'brazil - serie c',
+        'brazil - serie c#',
         'league two',
-        #'la liga',
+        'la liga',
         'spain - la liga 2',
         'portugal - primeira liga',
         'portugal - liga portugal',
         'portugal - liga portugal 2',
         'portugal - segunda liga',
         'italy - serie a',
+        'italy - seri b',
         'italy - serie c - group a',
         #'premier league',
         'scotland - championship',
@@ -58,7 +59,7 @@ NOT_ACCEPTABLE_LEAGUES = [
         'italy - serie c - group b',
         'england - national league',
         #'argentina - primera nacional',
-        'south korea - k league 1',
+        'south korea - k league 1#',
         'argentina - primera c',
         'argentina - primera c - apertura',
         'argentina - primera c - clausura',
@@ -68,11 +69,11 @@ NOT_ACCEPTABLE_LEAGUES = [
         'south korea - k3 league',
         'south africa - premier division',
         'south africa - first division',
-        'japan - j1 league',
+        'japan - j1 league#',
         'argentina - liga profesional',
-        'south korea - k league 2',
+        'south korea - k league 2#',
         'japan - j3 league',
-        'japan - j2 league',
+        'japan - j2 league#',
         'usa - mls',
         'usa - usl championship',
         'zambia - super league',
@@ -98,6 +99,7 @@ NOT_ACCEPTABLE_LEAGUES_2 = [
         'brazil - serie c',
         #'league two',
         'la liga',
+        'italy - serie b',
         'spain - la liga 2',
         'portugal - primeira liga',
         'portugal - liga portugal',
@@ -252,37 +254,37 @@ def analise_tecnica_bts(index):
     market_accept = []
  
     if is_analise_over15 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
-        if over_1_5[index] >= 1.30:
+        if over_1_5[index] >= 1.79:
              market_accept.append("The Robot Recomend Enter in << OVER 1.5 NO >>")
      
     if is_analise_over25 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
         
         
-         if league[index] in ['JAPAN - J2 LEAGUE']:
-             if over_2[index] >= 1.30:
+        if league[index] in ['JAPAN - J2 LEAGUE']:
+            if over_2[index] >= 1.79 and over_2[index] != 404:
             
                  market_accept.append("The Robot Recomend Enter in << OVER 2  NO >>")
             
-         elif league[index] in ['LEAGUE ONE']:
-             if over_1_5[index] >= 1.30:
+        elif league[index] in ['LEAGUE ONE']:
+            if over_1_5[index] >= 1.79:
             
                  market_accept.append("The Robot Recomend Enter in << OVER 1,5  NO >>")
             
         
-         else:
-             if over_2_5[index] >= 1.30:
+        else:
+            if over_2_5[index] >= 1.79:
             
                  market_accept.append("The Robot Recomend Enter in << OVER 2.5  NO >>")
       
         
     if is_analise_under2 and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES_2:
-        if under_2[index] >= 1.40:
+        if under_2[index] >= 1.79:
             
             market_accept.append("The Robot Recomend Enter in << UNDER 2 NO >>")
         
     
     if is_analise_bts_NO and league[index].lower().strip() not in NOT_ACCEPTABLE_LEAGUES:
-        if btsno[index] >= 1.40:
+        if btsno[index] >= 1.79:
         
             market_accept.append("The Robot Recomend Enter in << BTS NO >>")
     
@@ -340,7 +342,7 @@ for index in range(1, len(analise_fundamentalista)):
             print()
             
         elif str(analise_fundamentalista[index]).lower().strip() in ['homesuper','awaysuper']:
-            print('jfdf')
+            
             # do the analise tecnica baseada nas regras do super
             print(f'{data[index].day}/{data[index].month}/{data[index].year}', game[index] + " || ", analise_tecnica_super(index))
             print()
