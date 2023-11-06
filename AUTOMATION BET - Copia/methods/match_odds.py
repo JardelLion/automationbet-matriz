@@ -533,6 +533,8 @@ class MatchOdds:
             self.matriz_magico == False and
             self.matriz_primo == False
         )
+        
+
 
         if check and get_name(self.site) not in NOT_ACCEPTABLE_LEAGUES:
             

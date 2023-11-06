@@ -47,6 +47,8 @@ class LastResultMostRecentFirst8Games:
             'cellspacing': '0',
             'width': '100%'
         })
+        
+      
 
         self.table_names = self._table.find_all('td', attrs={
             'width': '40%'
@@ -54,6 +56,8 @@ class LastResultMostRecentFirst8Games:
         self.table_goals = self._table.find_all('td', attrs={
             'width': '8%'
         })
+        
+       
 
  
         if len(self.table_names) == len(self.table_goals):
@@ -62,6 +66,7 @@ class LastResultMostRecentFirst8Games:
                 if index < 12:
                     names = self.table_names[index].get_text().strip()
                     goals = self.table_goals[index].get_text().strip()
+                    
                     points = goals.split('-')
                     
                     if int(points[0]) == int(points[1]):
