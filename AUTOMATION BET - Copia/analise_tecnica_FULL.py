@@ -7,7 +7,7 @@ def get_sheet_name(sheet_name):
 
 
 workbook = openpyxl.load_workbook('tecnica_analise/2023/MATRIZ-FULL-2023.xlsx')
-sheet = workbook[get_sheet_name('test')]
+sheet = workbook[get_sheet_name('novembro')]
 
 question_day =  'all' #data 10/5/2010
 #str(input("Qual é o dia que se quer analisar [10/04/2023] / [all]: "))
